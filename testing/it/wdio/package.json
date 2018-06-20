@@ -1,0 +1,37 @@
+{
+    "name": "com.adobe.core.wcm.components.it.wdio",
+    "version": "1.0.0",
+    "description": "End2End for core components in AEM",
+    "dependencies": {
+        "chai": "^4.1.2",
+        "mocha": "^4.0.1",
+        "selenium-standalone": "^6.15.1",
+        "wdio-mocha-framework": "^0.5.11",
+        "wdio-spec-reporter": "^0.1.4",
+        "webdriverio": "^4.12.0",
+        "wdio-junit-reporter": "^0.4.3",
+        "wdio-sauce-service": "^0.4.0"
+    },
+    "devDependencies": {
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-preset-es2015": "^6.24.0",
+        "babel-register": "^6.24.0",
+        "eslint": "^4.9.0",
+        "wdio-allure-reporter": "^0.6.1",
+        "wdio-browserstack-service": "^0.1.16"
+    },
+    "scripts": {
+        "eslint": "eslint --ext .js .",
+        "start-selenium": "selenium-standalone install && selenium-standalone start",
+        "kill-selenium": "kill -15 $( lsof -i:4444 -t )",
+        "test": "wdio wdio.conf.js",
+        "test-single": "npm run cleanup && npm run eslint && wdio wdio.conf.js --spec",
+        "browserstack": "wdio wdio.conf.browserstack.js",
+        "saucelabs": "wdio wdio.conf.saucelabs.js",
+        "ci": "scripts/ci/test.sh",
+        "ci-chrome": "scripts/ci/test-chrome.sh",
+        "ci-firefox": "scripts/ci/test-firefox.sh",
+        "wdio-custom": "./node_modules/.bin/wdio",
+        "generate-allure-report": "scripts/ci/generate-allure-report.sh"
+    }
+}

@@ -10,8 +10,8 @@ import com.adobe.cq.model.EditorPage;
 
 public class DummyTest extends TestCase {
 
-    private static String cqUsername = System.getProperty("cq.username", "enter-your-aem-username");
-    private static String cqPassword = System.getProperty("cq.password", "enter-your-aem-password");
+    private static String cqUsername = System.getProperty("cq.username", "admin");
+    private static String cqPassword = System.getProperty("cq.password", "admin");
 
 
     @BeforeClass
