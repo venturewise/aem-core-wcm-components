@@ -1,14 +1,27 @@
 package com.adobe.cq.model;
 
+import com.codeborne.selenide.Selenide;
+
+/*
+Base Page Object for all AEM Pages
+ */
 public class BasePage {
 
-    private String url;
+    // each page has a unique path
+    private String path;
 
-    public BasePage(String url) {
-        this.url = url;
+    // default constructor
+    public BasePage(String path) {
+        this.path = path;
     }
 
+    // open the page
     public void open() {
-        com.codeborne.selenide.Selenide.open(this.url);
+        Selenide.open(this.path);
+    }
+
+    // get the page
+    public String getPath(){
+        return path;
     }
 }

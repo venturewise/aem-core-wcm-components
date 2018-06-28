@@ -3,19 +3,20 @@ package com.adobe.cq.model;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
+// DOM Model of the login page
 public class LoginPage extends BasePage {
 
-    private static final String LOGIN_URL = "/login.html";
+    // Login path
+    private static final String LOGIN_PATH = "/login.html";
 
+    // default constructor
     public LoginPage() {
-        super(LOGIN_URL);
+        super(LOGIN_PATH);
     }
 
-    public ConsolePage login(String username, String password) {
+    public void login(String username, String password) {
         $(By.id("username")).val(username);
         $(By.id("password")).val(password).pressEnter();
-        return page(ConsolePage.class);
     }
 }

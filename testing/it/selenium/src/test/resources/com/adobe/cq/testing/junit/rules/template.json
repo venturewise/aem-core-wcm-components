@@ -1,0 +1,228 @@
+{
+    "jcr:primaryType": "sling:OrderedFolder",
+    "jcr:mixinTypes": ["rep:AccessControllable"],
+    "jcr:title": "core-components",
+    "cq:templateTypesOrigin": "local",
+    "cq:policyOrigin": "local",
+    "cq:templatesOrigin": "local",
+    "settings": {
+        "jcr:primaryType": "sling:Folder",
+        "jcr:mixinTypes": ["rep:AccessControllable"],
+        "wcm": {
+            "jcr:primaryType": "cq:Page",
+            "jcr:mixinTypes": ["rep:AccessControllable"],
+            "templates": {
+                "jcr:primaryType": "cq:Page",
+                "jcr:mixinTypes": ["rep:AccessControllable"],
+                "core-components": {
+                    "jcr:primaryType": "cq:Template",
+                    "initial": {
+                        "jcr:primaryType": "cq:Page",
+                        "jcr:content": {
+                            "jcr:primaryType": "cq:PageContent",
+                            "cq:template": "/conf/core-components/settings/wcm/templates/core-components",
+                            "sling:resourceType": "wcm/foundation/components/page",
+                            "root": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "responsivegrid": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                    "cq:responsive": {"jcr:primaryType": "nt:unstructured"}
+                                }
+                            }
+                        }
+                    },
+                    "jcr:content": {
+                        "jcr:primaryType": "cq:PageContent",
+                        "jcr:title": "core-components",
+                        "status": "enabled",
+                        "cq:templateType": "/libs/settings/wcm/template-types/html5page"
+                    },
+                    "structure": {
+                        "jcr:primaryType": "cq:Page",
+                        "jcr:content": {
+                            "jcr:primaryType": "cq:PageContent",
+                            "cq:template": "/conf/core-components/settings/wcm/templates/core-components",
+                            "cq:deviceGroups": ["mobile/groups/responsive"],
+                            "sling:resourceType": "wcm/foundation/components/page",
+                            "root": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                "responsivegrid": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                                    "editable": "true",
+                                    "cq:responsive": {"jcr:primaryType": "nt:unstructured"}
+                                }
+                            },
+                            "cq:responsive": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "breakpoints": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "phone": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "title": "Smaller Screen",
+                                        "width": "650"
+                                    },
+                                    "tablet": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "title": "Tablet",
+                                        "width": "1200"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "policies": {
+                        "jcr:primaryType": "cq:Page",
+                        "jcr:content": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "cq:policy": "wcm/foundation/components/page/default",
+                            "sling:resourceType": "wcm/core/components/policies/mappings",
+                            "root": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "cq:policy": "wcm/foundation/components/responsivegrid/policy_1475234603206",
+                                "sling:resourceType": "wcm/core/components/policies/mapping",
+                                "responsivegrid": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "cq:policy": "wcm/foundation/components/responsivegrid/policy_1475234603206",
+                                    "sling:resourceType": "wcm/core/components/policies/mapping"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "policies": {
+                "jcr:primaryType": "cq:Page",
+                "jcr:mixinTypes": ["rep:AccessControllable"],
+                "wcm": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "foundation": {
+                        "jcr:primaryType": "nt:unstructured",
+                        "components": {
+                            "jcr:primaryType": "nt:unstructured",
+                            "page": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:content": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "mergeList": "true"
+                                },
+                                "default": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:title": "Default Page",
+                                    "jcr:description": "Policy of the default page",
+                                    "clientlibs": ["wcm.foundation.components.page.responsive"],
+                                    "sling:resourceType": "wcm/core/components/policy/policy",
+                                    "jcr:content": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "mergeList": "true"
+                                    }
+                                }
+                            },
+                            "responsivegrid": {
+                                "jcr:primaryType": "nt:unstructured",
+                                "jcr:content": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "mergeList": "true"
+                                },
+                                "default": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:title": "Default Layout Container",
+                                    "components": [
+                                        "/libs/wcm/foundation/components/responsivegrid",
+                                        "group:Core"
+                                    ],
+                                    "jcr:description": "Policy of the default root parsys",
+                                    "sling:resourceType": "wcm/core/components/policy/policy",
+                                    "cq:authoring": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "assetToComponentMapping": {
+                                            "jcr:primaryType": "nt:unstructured",
+                                            "image": {
+                                                "jcr:primaryType": "nt:unstructured",
+                                                "resourceType": "wcm/foundation/components/image",
+                                                "assetMimetype": "image/*",
+                                                "type": "Images",
+                                                "droptarget": "image",
+                                                "assetGroup": "media"
+                                            },
+                                            "product": {
+                                                "jcr:primaryType": "nt:unstructured",
+                                                "resourceType": "commerce/components/product",
+                                                "type": "Products",
+                                                "droptarget": "product-data-reference",
+                                                "assetGroup": "product"
+                                            },
+                                            "document": {
+                                                "jcr:primaryType": "nt:unstructured",
+                                                "resourceType": "foundation/components/download",
+                                                "assetMimetype": [
+                                                    "application/vnd.openxmlformats",
+                                                    "application/msword",
+                                                    "application/vnd.ms-powerpoint",
+                                                    "application/mspowerpoint",
+                                                    "application/powerpoint",
+                                                    "application/x-mspowerpoint",
+                                                    "application/x-msexcel",
+                                                    "application/x-excel",
+                                                    "application/excel",
+                                                    "application/vnd.ms-excel",
+                                                    "application/pdf",
+                                                    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                ],
+                                                "type": "Images",
+                                                "droptarget": "file",
+                                                "assetGroup": "media"
+                                            },
+                                            "video": {
+                                                "jcr:primaryType": "nt:unstructured",
+                                                "resourceType": "foundation/components/video",
+                                                "assetMimetype": "video/*",
+                                                "type": "Images",
+                                                "droptarget": "video",
+                                                "assetGroup": "media"
+                                            },
+                                            "fragment": {
+                                                "jcr:primaryType": "nt:unstructured",
+                                                "resourceType": "dam/cfm/components/contentfragment",
+                                                "assetMimetype": "text/html",
+                                                "type": "Content Fragment",
+                                                "droptarget": "fragment",
+                                                "assetGroup": "media"
+                                            }
+                                        }
+                                    },
+                                    "jcr:content": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "mergeList": "true"
+                                    }
+                                },
+                                "policy_1475234603206": {
+                                    "jcr:primaryType": "nt:unstructured",
+                                    "jcr:title": "Core Components Policy",
+                                    "components": [
+                                        "/libs/wcm/foundation/components/responsivegrid",
+                                        "group:Core",
+                                        "group:Core Form",
+                                        "group:core-wcm-form"
+                                    ],
+                                    "sling:resourceType": "wcm/core/components/policy/policy",
+                                    "jcr:content": {
+                                        "jcr:primaryType": "nt:unstructured",
+                                        "mergeList": "true"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "core-component": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "components": {"jcr:primaryType": "nt:unstructured"}
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "jcr:primaryType": "sling:Folder",
+    "jcr:title": "Core Components",
+    "cq:allowedTemplates": ["/conf/core-components/settings/wcm/templates/core-components"],
+    "core-components-page": {
+        "jcr:primaryType": "cq:Page",
+        "jcr:content": {
+            "jcr:primaryType": "cq:PageContent",
+            "jcr:title": "Core Components Page",
+            "cq:template": "/conf/core-components/settings/wcm/templates/core-components",
+            "sling:resourceType": "core/wcm/tests/components/test-page",
+            "root": {
+                "jcr:primaryType": "nt:unstructured",
+                "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                "responsivegrid": {
+                    "jcr:primaryType": "nt:unstructured",
+                    "sling:resourceType": "wcm/foundation/components/responsivegrid",
+                    "cq:responsive": {"jcr:primaryType": "nt:unstructured"}
+                }
+            }
+        }
+    }
+}
