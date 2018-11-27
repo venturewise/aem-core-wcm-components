@@ -34,9 +34,9 @@
     </parent>
 
     <properties>
-        <core.components.version>2.2.0</core.components.version>
-        <core.components.it-tests.version>6.3.50</core.components.it-tests.version>
-        <core.components.extension.version>1.0.8</core.components.extension.version>
+        <core.components.version>2.2.2</core.components.version>
+        <core.components.it-tests.version>6.3.52</core.components.it-tests.version>
+        <core.components.extension.version>1.0.10</core.components.extension.version>
     </properties>
 
     <dependencies>
