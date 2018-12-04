@@ -1,6 +1,6 @@
 # Roadmap
 
-Adobe is providing work-in-progress components as a technical preview. The components are found in the Sandbox folder. Please see the [`development`](https://github.com/Adobe-Marketing-Cloud/aem-core-wcm-components/tree/development) branch.
+Test. Adobe is providing work-in-progress components as a technical preview. The components are found in the Sandbox folder. Please see the [`development`](https://github.com/Adobe-Marketing-Cloud/aem-core-wcm-components/tree/development) branch.
 
 * **[Teaser](https://github.com/Adobe-Marketing-Cloud/aem-core-wcm-components/tree/development/content/src/content/jcr_root/apps/core/wcm/sandbox/components/teaser/v1/teaser)** – a link to a different page with an image and some text.
 * Image SVG support
