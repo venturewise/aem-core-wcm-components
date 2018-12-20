@@ -95,7 +95,7 @@ function pull_image {
 function start_aem {
     stage "Preparing $1 version $2 on port $3"
 	docker run -h aem-$1 -d --name aem-$1 -p $3:$3 ${docker_repo}/$2/$1 ./init.sh
-	sleep 15
+	docker exec aem-$1 ./ready.sh
 
 	stage "Starting $1 version $2 on port $3";
 	docker exec aem-$1 qp start --config qp-config.yaml --qs-jar cq/cq-quickstart-${2:0:1}.${2:1:1}.0.jar
