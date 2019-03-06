@@ -5,8 +5,10 @@
     <meta charset="UTF-8"/>
     <title>Separator</title>
     <meta name="keywords" content="Social"/>
-    <meta name="description" content="Display a horizontal section divider"/>
+    <meta name="description" content="Display a section divider"/>
     <meta name="template" content="content-page"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Source+Code+Pro|Source+Sans+Pro:400,400i,700" rel="stylesheet"/>
     
 
     
@@ -21,13 +23,23 @@
     
     
     
-<link rel="stylesheet" href="../etc.clientlibs/core-components-examples/clientlibs/clientlib-base.css" type="text/css">
+<link rel="stylesheet" href="../clientlibs/clientlib-base.css" type="text/css">
 
 
 
     
 
     
+    <link rel="icon" sizes="192x192" href="../clientlibs/clientlib-site/resources/icon-192x192.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-180x180.png"/>
+    <link rel="apple-touch-icon" sizes="167x167" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-167x167.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-120x120.png"/>
+    <meta name="msapplication-square310x310logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-310x310.png"/>
+    <meta name="msapplication-wide310x150logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-310x150.png"/>
+    <meta name="msapplication-square150x150logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-150x150.png"/>
+    <meta name="msapplication-square70x70logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-70x70.png"/>
+
 </head>
     <body class="page basicpage">
         
@@ -41,158 +53,24 @@
 
 <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
     
-    <div class="responsivegrid cmp-examples-structure__main aem-GridColumn aem-GridColumn--default--12">
+    <div class="responsivegrid cmp-examples-structure__header aem-GridColumn aem-GridColumn--default--12">
 
 <div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
     
-    <div class="title cmp-examples-title--heading1 aem-GridColumn aem-GridColumn--default--12">
-<div class="cmp-title">
-    <h1 class="cmp-title__text">Separator</h1>
+    <div class="show-menu aem-GridColumn aem-GridColumn--default--12">
+<button class="cmp-examples-show-menu cmp-examples-button" data-cmp-examples-is="showMenu" aria-label="Show Menu"><i class="cmp-examples-button__icon fas fa-bars"></i></button>
 </div>
-
-    
-
-</div>
-<div class="text cmp-examples-text__hero aem-GridColumn--default--none aem-GridColumn--default--9 aem-GridColumn aem-GridColumn--offset--default--0">
-<div class="cmp-text">
-    <p>Separator displays a horizontal line on the page for dividing sections of content.</p>
-
-</div>
-
-    
-
-</div>
-<div class="title cmp-examples-title--heading2 aem-GridColumn aem-GridColumn--default--12">
-<div class="cmp-title">
-    <h2 class="cmp-title__text">Examples</h2>
-</div>
-
-    
-
-</div>
-<div class="title cmp-examples-title--heading3 aem-GridColumn aem-GridColumn--default--12">
-<div class="cmp-title">
-    <h3 class="cmp-title__text">Standard</h3>
-</div>
-
-    
-
-</div>
-<div class="text aem-GridColumn aem-GridColumn--default--12">
-<div class="cmp-text">
-    <p>Separator is simply a horizontal rule rendered on the page and can be used for dividing sections of content.</p>
-
-</div>
-
-    
-
-</div>
-<div class="demo aem-GridColumn aem-GridColumn--default--12">
-<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
-    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
-        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthFull"><div class="component">
-
-    
-<div class="cmp-separator">
-    <hr class="cmp-separator__horizontal-rule"/>
-</div>
-    
-</div>
-</div>
-    </div>
-    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
-        <div><div class="tabs">
-<div class="cmp-tabs" data-cmp-is="tabs">
-    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
-        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
-<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
-
-    </ol>
-    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
-<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
-<ol class="cmp-examples-demo__properties">
-    <li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
-    </li>
-<li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value">admin</span>
-    </li>
-<li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value">admin</span>
-    </li>
-<li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value"></span>
-    </li>
-<li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value"></span>
-    </li>
-<li class="cmp-examples-demo__property">
-        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
-        <span class="cmp-examples-demo__property-value">core/wcm/components/separator/v1/separator</span>
-    </li>
-
-</ol>
-</pre>
-
-    
-</div>
-</div>
-<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
-<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
-    <code data-cmp-examples-hook-demo="markup" class="language-html">
-        
-
-    
-<div class="cmp-separator">
-    <hr class="cmp-separator__horizontal-rule"/>
-</div>
-    
-
-    </code>
-</pre>
-
-    
-</div>
-</div>
-
-    
-</div>
-</div>
-</div>
-        <div class="cmp-examples-demo__info-actions">
-            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
-         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
-         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
-        </div>
-    </div>
-</div>
-</div>
-
-    
-</div></div>
-<div class="responsivegrid cmp-examples-structure__header aem-GridColumn aem-GridColumn--default--12">
-
-<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--small--12 ">
-    
-    <div class="show-menu aem-GridColumn--small--none aem-GridColumn--default--hide aem-GridColumn aem-GridColumn--small--12 aem-GridColumn--offset--small--0 aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
-<button class="cmp-examples-button" data-cmp-examples-is="showMenu"><i class="cmp-examples-button__icon fas fa-bars"></i></button>
-</div>
-<div class="image aem-GridColumn--small--hide aem-GridColumn aem-GridColumn--small--12 aem-GridColumn--offset--small--0 aem-GridColumn--default--12">
-<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1409995310/image_1442382866/1548176306925/adobeexperiencemanager-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/AdobeExperienceManager-CoreComponents-logo.svg" data-asset-id="706b5da4-5aaf-4af0-94bb-c750f43b8d29" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+<div class="image aem-GridColumn aem-GridColumn--default--12">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1409995310/image_1442382866/1550153002914/aem-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg" data-asset-id="401835a1-832c-427f-a508-c7f55495a4df" data-title="AEM Core Components" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
     <a class="cmp-image__link" href="../library.html" data-cmp-hook-image="link">
         
             
-            <img src="separator.coreimg.svg/structure/_jcr_content/root/responsivegrid_1409995310/image_1442382866/1548176306925/adobeexperiencemanager-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt/>
+            <img src="separator.coreimg.svg/structure/_jcr_content/root/responsivegrid_1409995310/image_1442382866/1550153002914/aem-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="AEM Core Components" title="AEM Core Components"/>
             
         
     </a>
     
-    
+    <meta itemprop="caption" content="AEM Core Components"/>
 </div>
 
     
@@ -202,19 +80,19 @@
 </div></div>
 <div class="responsivegrid cmp-examples-structure__aside aem-GridColumn aem-GridColumn--default--12">
 
-<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 aem-Grid--small--12 ">
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
     
-    <div class="image aem-GridColumn--small--none aem-GridColumn--default--hide aem-GridColumn aem-GridColumn--small--12 aem-GridColumn--offset--small--0 aem-GridColumn--default--12 aem-GridColumn--offset--default--0">
-<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1755067073/image_1442382866_cop/1548176306925/adobeexperiencemanager-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/AdobeExperienceManager-CoreComponents-logo.svg" data-asset-id="706b5da4-5aaf-4af0-94bb-c750f43b8d29" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="image aem-GridColumn aem-GridColumn--default--12">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1755067073/image_1442382866_cop/1550153002914/aem-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg" data-asset-id="401835a1-832c-427f-a508-c7f55495a4df" data-title="AEM Core Components" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
     <a class="cmp-image__link" href="../library.html" data-cmp-hook-image="link">
         
             
-            <img src="separator.coreimg.svg/structure/_jcr_content/root/responsivegrid_1755067073/image_1442382866_cop/1548176306925/adobeexperiencemanager-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt/>
+            <img src="separator.coreimg.svg/structure/_jcr_content/root/responsivegrid_1755067073/image_1442382866_cop/1550153002914/aem-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="AEM Core Components" title="AEM Core Components"/>
             
         
     </a>
     
-    
+    <meta itemprop="caption" content="AEM Core Components"/>
 </div>
 
     
@@ -320,6 +198,248 @@
 
     
 </div></div>
+<div class="responsivegrid cmp-examples-structure__main aem-GridColumn aem-GridColumn--default--12">
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text cmp-examples-text--page-title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <h1>Separator<sub>v1</sub></h1>
+
+</div>
+
+    
+
+</div>
+<div class="text cmp-examples-text--hero aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Separator displays a horizontal line on the page for dividing sections of content.</p>
+
+</div>
+
+    
+
+</div>
+<div class="teaser cmp-examples-teaser--document aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-teaser">
+    
+    <div class="cmp-teaser__image">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator/_jcr_content/root/responsivegrid/teaser.coreimg{.width}.svg/1550163360574/github-logo.svg" data-asset="/content/dam/core-components-examples/library/github-logo.svg" data-asset-id="50aa0280-d844-45af-9aff-906100d4a2f0" data-title="GitHub" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/separator/v1/separator" data-cmp-hook-image="link">
+        
+            
+            <img src="separator/_jcr_content/root/responsivegrid/teaser.coreimg.svg/1550163360574/github-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="GitHub" title="GitHub"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="GitHub"/>
+</div>
+
+    
+</div>
+
+    <div class="cmp-teaser__content">
+        
+    <h2 class="cmp-teaser__title">
+        <a class="cmp-teaser__title-link" href="https://github.com/adobe/aem-core-wcm-components/blob/master/content/src/content/jcr_root/apps/core/wcm/components/separator/v1/separator">Technical Documentation</a>
+    </h2>
+
+        
+    <div class="cmp-teaser__description"><p>GitHub</p>
+</div>
+
+        
+    
+
+    </div>
+</div>
+
+    
+
+</div>
+<div class="teaser cmp-examples-teaser--document aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-teaser">
+    
+    <div class="cmp-teaser__image">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/separator/_jcr_content/root/responsivegrid/teaser_556024830.coreimg{.width}.svg/1550163360595/adobe-logo.svg" data-asset="/content/dam/core-components-examples/library/adobe-logo.svg" data-asset-id="e5c257f5-10d9-45cb-bf40-f2bc85d9ee22" data-title="Adobe" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="https://www.adobe.com/go/aem_cmp_separator_v1" data-cmp-hook-image="link">
+        
+            
+            <img src="separator/_jcr_content/root/responsivegrid/teaser_556024830.coreimg.svg/1550163360595/adobe-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="Adobe" title="Adobe"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="Adobe"/>
+</div>
+
+    
+</div>
+
+    <div class="cmp-teaser__content">
+        
+    <h2 class="cmp-teaser__title">
+        <a class="cmp-teaser__title-link" href="https://www.adobe.com/go/aem_cmp_separator_v1">Using Core Components</a>
+    </h2>
+
+        
+    <div class="cmp-teaser__description"><p>Adobe Help Center</p>
+</div>
+
+        
+    
+
+    </div>
+</div>
+
+    
+
+</div>
+<div class="title cmp-examples-title--heading2 aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h2 class="cmp-title__text">Examples</h2>
+</div>
+
+    
+
+</div>
+<div class="title cmp-examples-title--heading3 aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h3 class="cmp-title__text">Standard</h3>
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Separator is simply a horizontal rule rendered on the page and can be used for dividing sections of content.</p>
+
+</div>
+
+    
+
+</div>
+<div class="demo aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
+    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
+        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthFull"><div class="component">
+
+    
+<div class="cmp-separator">
+    <hr class="cmp-separator__horizontal-rule"/>
+</div>
+    
+</div>
+</div>
+    </div>
+    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
+        <div><div class="tabs">
+<div class="cmp-tabs" data-cmp-is="tabs">
+    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">JSON</li>
+
+    </ol>
+    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
+<ol class="cmp-examples-demo__properties">
+    <li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">core/wcm/components/separator/v1/separator</span>
+    </li>
+
+</ol>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
+    <code data-cmp-examples-hook-demo="markup" class="language-html">
+        
+
+    
+<div class="cmp-separator">
+    <hr class="cmp-separator__horizontal-rule"/>
+</div>
+    
+
+    </code>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="json">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--json prettyprint linenums">
+<code data-cmp-examples-hook-demo="json">
+    <a data-cmp-examples-hook-demo="jsonLink" href="separator/_jcr_content/root/responsivegrid/demo/component/separator.model.json">JSON</a>
+</code>
+</pre>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+</div>
+        <div class="cmp-examples-demo__info-actions">
+            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" aria-label="Copy to clipboard" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
+         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" aria-label="Hide code" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
+         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" aria-label="Show code" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+    
+</div></div>
+<div class="responsivegrid cmp-examples-structure__footer aem-GridColumn aem-GridColumn--default--12">
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="separator cmp-examples-separator--thin aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-separator">
+    <hr class="cmp-separator__horizontal-rule"/>
+</div></div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Built with <a href="https://github.com/adobe/aem-core-wcm-components/releases/tag/core.wcm.components.reactor-2.3.0">Core Components 2.3.0</a>.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+</div></div>
 
     
 </div></div>
@@ -328,7 +448,7 @@
             
     
     
-<script type="text/javascript" src="../etc.clientlibs/core-components-examples/clientlibs/clientlib-base.js"></script>
+<script type="text/javascript" src="../clientlibs/clientlib-base.js"></script>
 
 
 
