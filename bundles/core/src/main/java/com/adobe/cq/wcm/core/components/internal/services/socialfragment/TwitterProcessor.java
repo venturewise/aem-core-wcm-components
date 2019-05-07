@@ -35,7 +35,7 @@ public class TwitterProcessor extends AbstractRegexMatchProcessor {
 
     @Override
     public boolean accepts(String url) {
-        if (true || super.accepts(url)) {
+        if (super.accepts(url)) {
             InputStream is = null;
             try {
                 is = (new URL("https://publish.twitter.com/oembed?url=" + url)).openStream();

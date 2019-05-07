@@ -15,9 +15,6 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.internal.services.socialfragment;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.osgi.service.component.annotations.Component;
 
 import com.adobe.cq.wcm.core.components.models.SocialMediaFragment;
@@ -35,7 +32,7 @@ public class YouTubeProcessor extends AbstractRegexMatchProcessor {
     public boolean accepts(String url) {
         if (super.accepts(url)) {
             videoId = matcher.group(1);
-            options.put("src", "https://www.youtube.com/embed/" + videoId);
+            options.put("videoId", videoId);
             return true;
         }
         return false;

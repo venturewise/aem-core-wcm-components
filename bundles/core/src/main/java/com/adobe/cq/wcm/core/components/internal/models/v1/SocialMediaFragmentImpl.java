@@ -41,7 +41,7 @@ public class SocialMediaFragmentImpl implements SocialMediaFragment {
 
     protected static final String RESOURCE_TYPE_V1 = "core/wcm/components/social/v1/social";
 
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    @ValueMapValue(name = PN_URL, injectionStrategy = InjectionStrategy.OPTIONAL)
     private String url;
 
     @Inject @Optional
