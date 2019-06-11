@@ -1,0 +1,36 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2019 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<div class="cmp-embeddable-youtube" data-sly-test="${properties.youtubeId}">
+	<h2 class="cmp-embeddable-youtube__title"
+		data-sly-test="${properties.youtubeTitle}">${properties.youtubeTitle}</h2>
+	<iframe id="youtube-iframe-${resource.name}"
+		width="${properties.youtubeWidth || '100%' @ context='scriptString'}"
+		height="${properties.youtubeHeight || 390 @ context='scriptString'}"
+		src="${'https://www.youtube.com/embed/{0}?enablejsapi=1&origin={1}://{2}' @ format=[properties.youtubeId, request.scheme, request.serverName]}"
+		frameborder="0"></iframe>
+	<script type="text/javascript">
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		var YOUTUBE_IFRAME_API = "https://www.youtube.com/iframe_api";
+		if (firstScriptTag.src != YOUTUBE_IFRAME_API) {
+			var youtubeScriptTag = document.createElement('script');
+			youtubeScriptTag.src = YOUTUBE_IFRAME_API;
+			firstScriptTag.parentNode.insertBefore(youtubeScriptTag, firstScriptTag);
+		}
+		function onYouTubeIframeAPIReady() {
+		  new YT.Player("youtube-iframe-${resource.name @ context='scriptString'}");
+		}
+	</script>
+</div>

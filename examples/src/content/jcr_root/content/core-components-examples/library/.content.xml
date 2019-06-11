@@ -517,6 +517,7 @@
     <content-fragment/>
     <content-fragment-list/>
     <download/>
+    <embed/>
     <image/>
     <list/>
     <navigation/>
