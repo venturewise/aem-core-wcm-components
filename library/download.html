@@ -1,0 +1,1181 @@
+
+<!DOCTYPE HTML>
+<html lang="en-GB">
+    <head>
+    <meta charset="UTF-8"/>
+    <title>Download</title>
+    <meta name="keywords" content="Basic"/>
+    <meta name="description" content="Display an asset for download"/>
+    <meta name="template" content="content-page"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Source+Code+Pro|Source+Sans+Pro:400,400i,700" rel="stylesheet"/>
+    
+
+    
+
+
+    
+    
+    
+
+    
+
+    
+    
+    
+<link rel="stylesheet" href="../clientlibs/clientlib-base.css" type="text/css">
+
+
+
+    
+
+    
+    <link rel="icon" sizes="192x192" href="../clientlibs/clientlib-site/resources/icon-192x192.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-180x180.png"/>
+    <link rel="apple-touch-icon" sizes="167x167" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-167x167.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="http://localhost:4503/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/apple-touch-icon-120x120.png"/>
+    <meta name="msapplication-square310x310logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-310x310.png"/>
+    <meta name="msapplication-wide310x150logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-310x150.png"/>
+    <meta name="msapplication-square150x150logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-150x150.png"/>
+    <meta name="msapplication-square70x70logo" content="/etc.clientlibs/core-components-examples/clientlibs/clientlib-site/resources/icon-70x70.png"/>
+
+</head>
+    <body class="page basicpage">
+        
+        
+            
+
+
+
+            
+<div class="root responsivegrid cmp-examples-structure">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="responsivegrid cmp-examples-structure__header aem-GridColumn aem-GridColumn--default--12">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="show-menu aem-GridColumn aem-GridColumn--default--12">
+<button class="cmp-examples-show-menu cmp-examples-button" data-cmp-examples-is="showMenu" aria-label="Show Menu"><i class="cmp-examples-button__icon fas fa-bars"></i></button>
+</div>
+<div class="image aem-GridColumn aem-GridColumn--default--12">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/download.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1409995310/image_1442382866/1561469327935/aem-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg" data-asset-id="401835a1-832c-427f-a508-c7f55495a4df" data-title="AEM Core Components" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="../core-components-examples.html" data-cmp-hook-image="link">
+        
+            
+            <img src="download.coreimg.svg/structure/_jcr_content/root/responsivegrid_1409995310/image_1442382866/1561469327935/aem-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="AEM Core Components" title="AEM Core Components"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="AEM Core Components"/>
+</div>
+
+    
+</div>
+
+    
+</div>
+</div>
+<div class="responsivegrid cmp-examples-structure__aside aem-GridColumn aem-GridColumn--default--12">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="image aem-GridColumn aem-GridColumn--default--12">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/download.coreimg{.width}.svg/structure/jcr:content/root/responsivegrid_1755067073/image_1442382866_cop/1561469327935/aem-corecomponents-logo.svg" data-asset="/content/dam/core-components-examples/library/aem-corecomponents-logo.svg" data-asset-id="401835a1-832c-427f-a508-c7f55495a4df" data-title="AEM Core Components" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="../core-components-examples.html" data-cmp-hook-image="link">
+        
+            
+            <img src="download.coreimg.svg/structure/_jcr_content/root/responsivegrid_1755067073/image_1442382866_cop/1561469327935/aem-corecomponents-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="AEM Core Components" title="AEM Core Components"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="AEM Core Components"/>
+</div>
+
+    
+</div>
+<div class="navigation aem-GridColumn aem-GridColumn--default--12">
+<nav class="cmp-navigation" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    <ul class="cmp-navigation__group">
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="accordion.html" title="Accordion" class="cmp-navigation__item-link">Accordion</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="breadcrumb/hidden/level-1/level-2/breadcrumb.html" title="Breadcrumb" class="cmp-navigation__item-link">Breadcrumb</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="button.html" title="Button" class="cmp-navigation__item-link">Button</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="carousel.html" title="Carousel" class="cmp-navigation__item-link">Carousel</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="container.html" title="Container" class="cmp-navigation__item-link">Container</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="content-fragment.html" title="Content Fragment" class="cmp-navigation__item-link">Content Fragment</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="content-fragment-list.html" title="Content Fragment List" class="cmp-navigation__item-link">Content Fragment List</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0 cmp-navigation__item--active">
+        
+    <a href="download.html" title="Download" aria-current="page" class="cmp-navigation__item-link">Download</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="image.html" title="Image" class="cmp-navigation__item-link">Image</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="language-navigation/language-structure/us/en/language-navigation.html" title="Language Navigation" class="cmp-navigation__item-link">Language Navigation</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="list.html" title="List" class="cmp-navigation__item-link">List</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="navigation.html" title="Navigation" class="cmp-navigation__item-link">Navigation</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="separator.html" title="Separator" class="cmp-navigation__item-link">Separator</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="social-sharing.html" title="Social Sharing" class="cmp-navigation__item-link">Social Sharing</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="tabs.html" title="Tabs" class="cmp-navigation__item-link">Tabs</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="teaser.html" title="Teaser" class="cmp-navigation__item-link">Teaser</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="text.html" title="Text" class="cmp-navigation__item-link">Text</a>
+
+        
+    </li>
+
+    
+        
+    <li class="cmp-navigation__item cmp-navigation__item--level-0">
+        
+    <a href="title.html" title="Title" class="cmp-navigation__item-link">Title</a>
+
+        
+    </li>
+
+    </ul>
+</nav>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+<div class="responsivegrid cmp-examples-structure__main aem-GridColumn aem-GridColumn--default--12">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="text cmp-examples-text--page-title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <h1>Download<sub>v1</sub></h1>
+</div>
+
+    
+
+</div>
+<div class="text cmp-examples-text--hero aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Download allows linking to an asset for download. Optionally displays a title, description, metadata and a download action.</p>
+
+</div>
+
+    
+
+</div>
+<div class="teaser cmp-examples-teaser--document aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-teaser">
+    
+    <div class="cmp-teaser__image">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/download/_jcr_content/root/responsivegrid/teaser_copy.coreimg{.width}.svg/1561469313629/github-logo.svg" data-asset="/content/dam/core-components-examples/library/github-logo.svg" data-asset-id="50aa0280-d844-45af-9aff-906100d4a2f0" data-title="GitHub" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="https://www.adobe.com/go/aem_cmp_tech_download_v1" data-cmp-hook-image="link">
+        
+            
+            <img src="download/_jcr_content/root/responsivegrid/teaser_copy.coreimg.svg/1561469313629/github-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="GitHub" title="GitHub"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="GitHub"/>
+</div>
+
+    
+</div>
+
+    <div class="cmp-teaser__content">
+        
+    <h2 class="cmp-teaser__title">
+        <a class="cmp-teaser__title-link" href="https://www.adobe.com/go/aem_cmp_tech_download_v1">Technical Documentation</a>
+    </h2>
+
+        
+    <div class="cmp-teaser__description"><p>GitHub</p>
+</div>
+
+        
+    
+
+    </div>
+</div>
+
+    
+
+</div>
+<div class="teaser cmp-examples-teaser--document aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-teaser">
+    
+    <div class="cmp-teaser__image">
+<div data-cmp-is="image" data-cmp-src="/content/core-components-examples/library/download/_jcr_content/root/responsivegrid/teaser_556024830_cop.coreimg{.width}.svg/1561469317697/adobe-logo.svg" data-asset="/content/dam/core-components-examples/library/adobe-logo.svg" data-asset-id="e5c257f5-10d9-45cb-bf40-f2bc85d9ee22" data-title="Adobe" class="cmp-image" itemscope itemtype="http://schema.org/ImageObject">
+    <a class="cmp-image__link" href="https://www.adobe.com/go/aem_cmp_download_v1" data-cmp-hook-image="link">
+        
+            
+            <img src="download/_jcr_content/root/responsivegrid/teaser_556024830_cop.coreimg.svg/1561469317697/adobe-logo.svg" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" alt="Adobe" title="Adobe"/>
+            
+        
+    </a>
+    
+    <meta itemprop="caption" content="Adobe"/>
+</div>
+
+    
+</div>
+
+    <div class="cmp-teaser__content">
+        
+    <h2 class="cmp-teaser__title">
+        <a class="cmp-teaser__title-link" href="https://www.adobe.com/go/aem_cmp_download_v1">Using Core Components</a>
+    </h2>
+
+        
+    <div class="cmp-teaser__description"><p>Adobe Help Center</p>
+</div>
+
+        
+    
+
+    </div>
+</div>
+
+    
+
+</div>
+<div class="title cmp-examples-title--heading2 aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h2 class="cmp-title__text">Examples</h2>
+</div>
+
+    
+
+</div>
+<div class="title cmp-examples-title--heading3 aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h3 class="cmp-title__text">Standard</h3>
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Simple Download with only an <i>Action Text</i> and <i>Download Asset</i> configured. The <i>Title</i> and <i>Description</i> are by default taken from the provided asset.</p>
+
+</div>
+
+    
+
+</div>
+<div class="demo aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
+    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
+        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthAuto"><div class="component">
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">Lava flowing into the ocean</a>
+    </h3>
+    <div class="cmp-download__description">Lava flowing into the ocean</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+</div>
+</div>
+    </div>
+    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
+        <div><div class="tabs">
+<div class="cmp-tabs" data-cmp-is="tabs">
+    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">JSON</li>
+
+    </ol>
+    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
+<ol class="cmp-examples-demo__properties">
+    <li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">fileReference<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">core/wcm/components/download/v1/download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">titleFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">textIsRich<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">actionText<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">Download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">descriptionFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+
+</ol>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
+    <code data-cmp-examples-hook-demo="markup" class="language-html">
+        
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">Lava flowing into the ocean</a>
+    </h3>
+    <div class="cmp-download__description">Lava flowing into the ocean</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+
+    </code>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="json">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--json prettyprint linenums">
+<code data-cmp-examples-hook-demo="json">
+    <a data-cmp-examples-hook-demo="jsonLink" href="download/_jcr_content/root/responsivegrid/demo/component/download.model.json">JSON</a>
+</code>
+</pre>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+</div>
+        <div class="cmp-examples-demo__info-actions">
+            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" aria-label="Copy to clipboard" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
+         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" aria-label="Hide code" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
+         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" aria-label="Show code" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+<div class="title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h3 class="cmp-title__text">Title and Description</h3>
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>By default, the <i>Title</i> and <i>Description</i> are taken from the provided asset. In this example, we provide a custom title and description for the download.</p>
+
+</div>
+
+    
+
+</div>
+<div class="demo aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
+    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
+        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthAuto"><div class="component">
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">Custom Title</a>
+    </h3>
+    <div class="cmp-download__description"><p>Custom description</p>
+</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+</div>
+</div>
+    </div>
+    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
+        <div><div class="tabs">
+<div class="cmp-tabs" data-cmp-is="tabs">
+    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">JSON</li>
+
+    </ol>
+    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
+<ol class="cmp-examples-demo__properties">
+    <li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:title<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">Custom Title</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">fileReference<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">inline<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">false</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:description<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">&lt;p&gt;Custom description&lt;/p&gt;
+</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">core/wcm/components/download/v1/download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">titleFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">false</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">textIsRich<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">actionText<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">Download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">descriptionFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">false</span>
+    </li>
+
+</ol>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
+    <code data-cmp-examples-hook-demo="markup" class="language-html">
+        
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">Custom Title</a>
+    </h3>
+    <div class="cmp-download__description"><p>Custom description</p>
+</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.jpeg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+
+    </code>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="json">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--json prettyprint linenums">
+<code data-cmp-examples-hook-demo="json">
+    <a data-cmp-examples-hook-demo="jsonLink" href="download/_jcr_content/root/responsivegrid/demo_1197373359/component/download.model.json">JSON</a>
+</code>
+</pre>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+</div>
+        <div class="cmp-examples-demo__info-actions">
+            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" aria-label="Copy to clipboard" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
+         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" aria-label="Hide code" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
+         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" aria-label="Show code" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+<div class="title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h3 class="cmp-title__text">Direct Upload</h3>
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>It is possible to upload an asset directly from a local file system rather than selecting an asset from DAM.</p>
+
+</div>
+
+    
+
+</div>
+<div class="demo aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
+    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
+        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthAuto"><div class="component">
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="download/_jcr_content/root/responsivegrid/demo_68071479/component/download/file.coredownload.jpeg/lava-into-ocean.jpg">Uploaded Asset</a>
+    </h3>
+    <div class="cmp-download__description"><p>Asset uploaded directly from a local file system</p>
+</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="download/_jcr_content/root/responsivegrid/demo_68071479/component/download/file.coredownload.jpeg/lava-into-ocean.jpg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+</div>
+</div>
+    </div>
+    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
+        <div><div class="tabs">
+<div class="cmp-tabs" data-cmp-is="tabs">
+    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">JSON</li>
+
+    </ol>
+    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
+<ol class="cmp-examples-demo__properties">
+    <li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:title<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">Uploaded Asset</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">fileName<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">lava-into-ocean.jpg</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:description<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">&lt;p&gt;Asset uploaded directly from a local file system&lt;/p&gt;
+</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">core/wcm/components/download/v1/download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">titleFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">false</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">textIsRich<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">actionText<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">Download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">descriptionFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">false</span>
+    </li>
+
+</ol>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
+    <code data-cmp-examples-hook-demo="markup" class="language-html">
+        
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="download/_jcr_content/root/responsivegrid/demo_68071479/component/download/file.coredownload.jpeg/lava-into-ocean.jpg">Uploaded Asset</a>
+    </h3>
+    <div class="cmp-download__description"><p>Asset uploaded directly from a local file system</p>
+</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="download/_jcr_content/root/responsivegrid/demo_68071479/component/download/file.coredownload.jpeg/lava-into-ocean.jpg">
+        <span class="cmp-download__action-text">Download</span>
+    </a>
+</div>
+
+    
+
+    
+
+    </code>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="json">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--json prettyprint linenums">
+<code data-cmp-examples-hook-demo="json">
+    <a data-cmp-examples-hook-demo="jsonLink" href="download/_jcr_content/root/responsivegrid/demo_68071479/component/download.model.json">JSON</a>
+</code>
+</pre>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+</div>
+        <div class="cmp-examples-demo__info-actions">
+            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" aria-label="Copy to clipboard" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
+         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" aria-label="Hide code" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
+         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" aria-label="Show code" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+<div class="title aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-title">
+    <h3 class="cmp-title__text">Display Inline</h3>
+</div>
+
+    
+
+</div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>By default the asset is downloaded directly, but it is also possible to display it inline in the browser.</p>
+
+</div>
+
+    
+
+</div>
+<div class="demo aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-examples-demo" data-cmp-examples-is="demo" data-cmp-examples-label="Demo">
+    <div class="cmp-examples-demo__top t-cmp-clean t-cmp-clean--light" data-cmp-examples-hook-demo="top">
+        <div class="cmp-examples-demo__component cmp-examples-demo__component--widthAuto"><div class="component">
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.inline.jpeg">Lava flowing into the ocean</a>
+    </h3>
+    <div class="cmp-download__description">Lava flowing into the ocean</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.inline.jpeg">
+        <span class="cmp-download__action-text">View</span>
+    </a>
+</div>
+
+    
+
+    
+</div>
+</div>
+    </div>
+    <div class="cmp-examples-demo__info cmp-examples-demo__info--open" data-cmp-examples-hook-demo="info">
+        <div><div class="tabs">
+<div class="cmp-tabs" data-cmp-is="tabs">
+    <ol role="tablist" class="cmp-tabs__tablist" aria-multiselectable="false">
+        <li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Properties</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">Markup</li>
+<li role="tab" class="cmp-tabs__tab" data-cmp-hook-tabs="tab">JSON</li>
+
+    </ol>
+    <div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="properties">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--properties">
+<ol class="cmp-examples-demo__properties">
+    <li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:primaryType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">nt:unstructured</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:createdBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">fileReference<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">/content/dam/core-components-examples/library/sample-assets/lava-into-ocean.jpg</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModifiedBy<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">admin</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">inline<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:created<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">jcr:lastModified<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value"></span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">sling:resourceType<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">core/wcm/components/download/v1/download</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">titleFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">textIsRich<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">actionText<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">View</span>
+    </li>
+<li class="cmp-examples-demo__property">
+        <span class="cmp-examples-demo__property-title">descriptionFromAsset<span class="cmp-examples-demo__property-separator">:</span></span>
+        <span class="cmp-examples-demo__property-value">true</span>
+    </li>
+
+</ol>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="markup">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--markup prettyprint linenums">
+    <code data-cmp-examples-hook-demo="markup" class="language-html">
+        
+
+    
+<div class="cmp-download">
+    <h3 class="cmp-download__title">
+        <a class="cmp-download__title-link" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.inline.jpeg">Lava flowing into the ocean</a>
+    </h3>
+    <div class="cmp-download__description">Lava flowing into the ocean</div>
+    <dl class="cmp-download__properties">
+        <div class="cmp-download__property cmp-download__property--filename">
+            <dt class="cmp-download__property-label">Filename</dt>
+            <dd class="cmp-download__property-content">lava-into-ocean.jpg</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--size">
+            <dt class="cmp-download__property-label">Size</dt>
+            <dd class="cmp-download__property-content">81 KB</dd>
+        </div>
+        <div class="cmp-download__property cmp-download__property--format">
+            <dt class="cmp-download__property-label">Format</dt>
+            <dd class="cmp-download__property-content">image/jpeg</dd>
+        </div>
+    </dl>
+    <a class="cmp-download__action" href="../core-components-examples/library/sample-assets/lava-into-ocean.jpg.coredownload.inline.jpeg">
+        <span class="cmp-download__action-text">View</span>
+    </a>
+</div>
+
+    
+
+    
+
+    </code>
+</pre>
+
+    
+</div>
+</div>
+<div role="tabpanel" class="cmp-tabs__tabpanel" data-cmp-hook-tabs="tabpanel"><div class="json">
+<pre class="cmp-examples-demo__info-content cmp-examples-demo__info-content--json prettyprint linenums">
+<code data-cmp-examples-hook-demo="json">
+    <a data-cmp-examples-hook-demo="jsonLink" href="download/_jcr_content/root/responsivegrid/demo_69071411/component/download.model.json">JSON</a>
+</code>
+</pre>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+</div>
+        <div class="cmp-examples-demo__info-actions">
+            <button class="cmp-examples-button" data-cmp-examples-hook-demo="copyCode" aria-label="Copy to clipboard" data-cmp-examples-tooltip="Copy to clipboard"><i class="cmp-examples-button__icon fas fa-copy"></i></button><!--
+         --><button class="cmp-examples-button" data-cmp-examples-hook-demo="hideCode" aria-label="Hide code" data-cmp-examples-tooltip="Hide code"><i class="cmp-examples-button__icon fas fa-angle-down"></i></button><!--
+         --><button disabled class="cmp-examples-button" data-cmp-examples-hook-demo="showCode" aria-label="Show code" data-cmp-examples-tooltip="Show code"><i class="cmp-examples-button__icon fas fa-angle-up"></i></button>
+        </div>
+    </div>
+</div>
+</div>
+
+    
+</div>
+</div>
+<div class="responsivegrid cmp-examples-structure__footer aem-GridColumn aem-GridColumn--default--12">
+
+
+<div class="aem-Grid aem-Grid--12 aem-Grid--default--12 ">
+    
+    <div class="separator cmp-examples-separator--thin aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-separator">
+    <hr class="cmp-separator__horizontal-rule"/>
+</div></div>
+<div class="text aem-GridColumn aem-GridColumn--default--12">
+<div class="cmp-text">
+    <p>Built with <a href="https://github.com/adobe/aem-core-wcm-components/releases/tag/core.wcm.components.reactor-2.5.0">Core Components 2.5.0</a>.</p>
+
+</div>
+
+    
+
+</div>
+
+    
+</div>
+</div>
+
+    
+</div>
+</div>
+
+
+            
+    
+    
+<script type="text/javascript" src="../clientlibs/clientlib-base.js"></script>
+
+
+
+    
+
+
+    
+
+    
+
+
+            
+
+        
+    </body>
+</html>
