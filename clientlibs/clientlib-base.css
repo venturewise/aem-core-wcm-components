@@ -14353,6 +14353,7 @@ pre.prettyprint .fun {
 .cmp-examples-structure__aside .cmp-navigation {
   margin-top: 0.25rem;
   padding-right: 1.25rem;
+  padding-bottom: 2.5rem;
 }
 @media only screen and (min-width: 480px) {
   .cmp-examples-structure__aside .cmp-navigation {
