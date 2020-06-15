@@ -3,9 +3,12 @@ package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.AssetDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ContainerDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.AssetDataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ImageComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.PageDataBuilderImpl;
+import com.day.cq.dam.api.Asset;
+import org.jetbrains.annotations.NotNull;
 
 public final class DataLayerBuilder {
 
@@ -36,6 +39,10 @@ public final class DataLayerBuilder {
 
     public static AssetDataBuilder forAsset() {
         return new AssetDataBuilderImpl(EMPTY_SUPPLIER);
+    }
+
+    public static AssetDataBuilder forAsset(@NotNull final Asset asset) {
+        return new AssetDataBuilderImpl(new AssetDataLayerSupplier(asset));
     }
 
     public static PageDataBuilder forPage() {

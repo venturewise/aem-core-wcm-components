@@ -36,26 +36,41 @@ class AssetDataImpl implements AssetData {
 
     @Override
     public String getId() {
-        return dataLayerSupplier.getId().map(Supplier::get).orElse(null);
+        return this.dataLayerSupplier
+            .getId()
+            .map(Supplier::get)
+            .orElse(null);
     }
 
     @Override
     public Date getLastModifiedDate() {
-        return dataLayerSupplier.getLastModifiedDate().map(Supplier::get).orElse(null);
+        return this.dataLayerSupplier
+            .getLastModifiedDate()
+            .map(Supplier::get)
+            .orElse(null);
     }
 
     @Override
     public String getFormat() {
-        return dataLayerSupplier.getFormat().map(Supplier::get).orElse(null);
+        return this.dataLayerSupplier
+            .getFormat()
+            .map(Supplier::get)
+            .orElse(null);
     }
 
     @Override
     public String getUrl() {
-        return dataLayerSupplier.getUrl().map(Supplier::get).orElse(null);
+        return this.dataLayerSupplier
+            .getUrl()
+            .map(Supplier::get)
+            .orElse(null);
     }
 
     @Override
     public String[] getTags() {
-        return dataLayerSupplier.getTags().map(Supplier::get).orElse(null);
+        return this.dataLayerSupplier
+            .getTags()
+            .map(Supplier::get)
+            .orElse(null);
     }
 }
