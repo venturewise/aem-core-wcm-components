@@ -19,6 +19,9 @@ import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.sup
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Optional;
+import java.util.function.Supplier;
+
 public final class ContainerDataExtenderSupplier extends ComponentDataExtenderSupplier implements DataLayerSupplier {
 
     @NotNull
@@ -29,4 +32,9 @@ public final class ContainerDataExtenderSupplier extends ComponentDataExtenderSu
         this.data = componentData;
     }
 
+    @Override
+    @NotNull
+    public Optional<Supplier<String[]>> getShownItems() {
+        return Optional.of(this.data::getShownItems);
+    }
 }
