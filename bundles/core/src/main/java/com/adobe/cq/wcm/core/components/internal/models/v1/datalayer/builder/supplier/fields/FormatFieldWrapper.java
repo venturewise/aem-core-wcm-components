@@ -46,7 +46,7 @@ public final class FormatFieldWrapper extends DataLayerSupplierWrapper {
 
     @Override
     @NotNull
-    public Optional<Supplier<String>> getText() {
+    public Optional<Supplier<String>> getFormat() {
         return Optional.of(this.supplier);
     }
 }
