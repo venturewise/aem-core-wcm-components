@@ -36,7 +36,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     //TODO: should null be allowed
     public String getId() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getId()
             .map(Supplier::get)
             .orElse(null);
@@ -45,7 +45,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getType() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getType()
             .map(Supplier::get)
             .orElse(null);
@@ -54,7 +54,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public Date getLastModifiedDate() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getLastModifiedDate()
             .map(Supplier::get)
             .orElse(null);
@@ -63,7 +63,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getParentId() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getParentId()
             .map(Supplier::get)
             .orElse(null);
@@ -72,7 +72,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getTitle() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getTitle()
             .map(Supplier::get)
             .orElse(null);
@@ -81,7 +81,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getDescription() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getDescription()
             .map(Supplier::get)
             .orElse(null);
@@ -90,7 +90,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getText() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getText()
             .map(Supplier::get)
             .orElse(null);
@@ -99,7 +99,7 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     @Override
     @Nullable
     public String getLinkUrl() {
-        return this.dataLayerSupplier
+        return this.getDataLayerSupplier()
             .getLinkUrl()
             .map(Supplier::get)
             .orElse(null);
