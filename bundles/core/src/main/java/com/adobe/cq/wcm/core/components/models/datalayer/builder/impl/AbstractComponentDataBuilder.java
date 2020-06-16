@@ -2,6 +2,7 @@ package com.adobe.cq.wcm.core.components.models.datalayer.builder.impl;
 
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.GenericComponentDataBuilder;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.DescriptionFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.IdFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.LastModifiedDateFieldWrapper;
@@ -10,7 +11,6 @@ import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.f
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.TextFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.TitleFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.TypeFieldWrapper;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;

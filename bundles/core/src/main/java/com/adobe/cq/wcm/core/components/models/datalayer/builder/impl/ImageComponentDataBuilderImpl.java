@@ -3,8 +3,8 @@ package com.adobe.cq.wcm.core.components.models.datalayer.builder.impl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ImageComponentDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.AssetDataFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.AssetDataFieldWrapper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;

@@ -2,8 +2,8 @@ package com.adobe.cq.wcm.core.components.models.datalayer.builder.impl;
 
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ContainerDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.ShownItemsFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.fields.ShownItemsFieldWrapper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
