@@ -40,6 +40,6 @@ public class ImageComponentDataBuilderImpl
     @NotNull
     @Override
     public ImageData build() {
-        return new ImageComponentDataImpl(this.getDataLayerSupplier());
+        return new ComponentDataImpl(this.getDataLayerSupplier());
     }
 }

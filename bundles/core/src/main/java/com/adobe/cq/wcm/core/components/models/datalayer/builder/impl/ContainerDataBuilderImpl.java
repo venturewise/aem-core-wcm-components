@@ -39,6 +39,6 @@ public final class ContainerDataBuilderImpl
     @NotNull
     @Override
     public ContainerData build() {
-        return new ContainerDataImpl(this.getDataLayerSupplier());
+        return new ComponentDataImpl(this.getDataLayerSupplier());
     }
 }

@@ -60,6 +60,6 @@ public final class PageDataBuilderImpl
     @Override
     @NotNull
     public PageData build() {
-        return new PageDataImpl(this.getDataLayerSupplier());
+        return new ComponentDataImpl(this.getDataLayerSupplier());
     }
 }

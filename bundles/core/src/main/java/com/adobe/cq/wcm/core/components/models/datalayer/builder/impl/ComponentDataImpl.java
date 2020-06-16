@@ -1,6 +1,10 @@
 package com.adobe.cq.wcm.core.components.models.datalayer.builder.impl;
 
+import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Date;
 import java.util.function.Supplier;
 
-class ComponentDataImpl implements ComponentData {
+class ComponentDataImpl implements ComponentData, ImageData, ContainerData, PageData {
 
     /**
      * Logger.
@@ -97,6 +101,60 @@ class ComponentDataImpl implements ComponentData {
     public String getLinkUrl() {
         return this.dataLayerSupplier
             .getLinkUrl()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public String[] getShownItems() {
+        return this.getDataLayerSupplier()
+            .getShownItems()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public AssetData getAssetData() {
+        return this.getDataLayerSupplier()
+            .getAssetData()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public String getTemplatePath() {
+        return this.getDataLayerSupplier()
+            .getTemplatePath()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public String getLanguage() {
+        return this.getDataLayerSupplier()
+            .getLanguage()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public String[] getTags() {
+        return this.getDataLayerSupplier()
+            .getTags()
+            .map(Supplier::get)
+            .orElse(null);
+    }
+
+    @Override
+    @Nullable
+    public String getUrl() {
+        return this.getDataLayerSupplier()
+            .getUrl()
             .map(Supplier::get)
             .orElse(null);
     }
