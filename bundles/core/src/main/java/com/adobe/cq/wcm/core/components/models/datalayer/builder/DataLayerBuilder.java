@@ -15,24 +15,24 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.AssetDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ContainerDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.IDRequiredDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ImageComponentDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.PageDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender.AssetDataExtenderSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender.ComponentDataExtenderSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender.ContainerDataExtenderSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender.ImageComponentDataExtenderSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender.PageDataExtenderSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.AssetDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ComponentDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ContainerDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.IDRequiredDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ImageComponentDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.PageDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.AssetDataLayerSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.extender.AssetDataExtenderSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.extender.ComponentDataExtenderSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.extender.ContainerDataExtenderSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.extender.ImageComponentDataExtenderSupplier;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.extender.PageDataExtenderSupplier;
 import com.day.cq.dam.api.Asset;
 import org.jetbrains.annotations.NotNull;
 

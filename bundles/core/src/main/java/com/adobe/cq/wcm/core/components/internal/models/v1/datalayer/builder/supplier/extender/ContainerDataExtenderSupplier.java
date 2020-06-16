@@ -13,24 +13,20 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-package com.adobe.cq.wcm.core.components.models.datalayer.builder;
+package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.extender;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Generic data builder that specifies fields available on all data builders.
- * Every data builder should implement this interface.
- *
- * @param <T> The data builder type.
- * @param <K> The data type.
- */
-public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> extends IdRequiredDataBuilder<T, K> {
+public final class ContainerDataExtenderSupplier extends ComponentDataExtenderSupplier implements DataLayerSupplier {
 
-    /**
-     * Build the data.
-     *
-     * @return The data.
-     */
     @NotNull
-    K build();
+    private final ContainerData data;
+
+    public ContainerDataExtenderSupplier(@NotNull final ContainerData componentData) {
+        super(componentData);
+        this.data = componentData;
+    }
+
 }
