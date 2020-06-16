@@ -49,12 +49,9 @@ class ComponentDataImpl implements ComponentData, ImageData, ContainerData, Page
     }
 
     @Override
-    //TODO: should null be allowed
+    @NotNull
     public String getId() {
-        return this.getDataLayerSupplier()
-            .getId()
-            .map(Supplier::get)
-            .orElse(null);
+        return this.getDataLayerSupplier().getId().get();
     }
 
     @Override

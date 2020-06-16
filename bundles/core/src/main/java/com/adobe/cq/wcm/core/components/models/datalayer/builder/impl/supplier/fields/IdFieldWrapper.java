@@ -19,7 +19,6 @@ import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.D
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.DataLayerSupplierWrapper;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -31,7 +30,7 @@ public final class IdFieldWrapper extends DataLayerSupplierWrapper {
      * The ID value supplier.
      */
     @NotNull
-    final Supplier<String> idSupplier;
+    final Supplier<@NotNull String> idSupplier;
 
     /**
      * Construct a {@link DataLayerSupplier} wrapper that overrides the ID field.
@@ -39,14 +38,14 @@ public final class IdFieldWrapper extends DataLayerSupplierWrapper {
      * @param dataLayerSupplier The wrapped data layer supplier.
      * @param supplier          The ID value supplier.
      */
-    public IdFieldWrapper(@NotNull final DataLayerSupplier dataLayerSupplier, @NotNull final Supplier<String> supplier) {
+    public IdFieldWrapper(@NotNull final DataLayerSupplier dataLayerSupplier, @NotNull final Supplier<@NotNull String> supplier) {
         super(dataLayerSupplier);
         this.idSupplier = supplier;
     }
 
     @Override
     @NotNull
-    public Optional<Supplier<String>> getId() {
-        return Optional.of(this.idSupplier);
+    public Supplier<@NotNull String> getId() {
+        return this.idSupplier;
     }
 }

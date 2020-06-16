@@ -35,11 +35,9 @@ class AssetDataImpl implements AssetData {
     }
 
     @Override
+    @NotNull
     public String getId() {
-        return this.dataLayerSupplier
-            .getId()
-            .map(Supplier::get)
-            .orElse(null);
+        return this.dataLayerSupplier.getId().get();
     }
 
     @Override

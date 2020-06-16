@@ -34,8 +34,8 @@ public interface DataLayerSupplier {
      * @return The ID field value supplier, or empty if not set.
     */
     @NotNull
-    default Optional<Supplier<String>> getId() {
-        return Optional.empty();
+    default Supplier<@NotNull String> getId() {
+        throw new UnsupportedOperationException();
     }
 
     /**

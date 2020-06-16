@@ -34,8 +34,8 @@ public final class AssetDataExtenderSupplier implements DataLayerSupplier {
 
     @Override
     @NotNull
-    public final Optional<Supplier<String>> getId() {
-        return Optional.of(this.data::getId);
+    public final Supplier<@NotNull String> getId() {
+        return this.data::getId;
     }
 
     @Override

@@ -44,7 +44,7 @@ public abstract class DataLayerSupplierWrapper implements DataLayerSupplier {
 
     @Override
     @NotNull
-    public Optional<Supplier<String>> getId() {
+    public Supplier<@NotNull String> getId() {
         return this.getWrappedSupplier().getId();
     }
 

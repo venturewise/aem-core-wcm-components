@@ -39,8 +39,8 @@ public final class AssetDataLayerSupplier implements DataLayerSupplier {
 
     @Override
     @NotNull
-    public Optional<Supplier<String>> getId() {
-        return Optional.of(asset::getID);
+    public Supplier<String> getId() {
+        return asset::getID;
     }
 
     @Override
