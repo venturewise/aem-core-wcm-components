@@ -19,7 +19,21 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
+/**
+ * Temporary data builder that requires an ID supplier to be set.
+ * This is typically used as the first level of a data builder to ensure that the caller specifies the ID field value
+ * as required by the {@link com.adobe.cq.wcm.core.components.models.datalayer.ComponentData} interface.
+ *
+ * @param <T> The data builder type.
+ * @param <K> The data type.
+ */
 public interface IdRequiredDataBuilder<T extends GenericDataBuilder<T, K>, K> {
 
+    /**
+     * Set the supplier that supplies the component's ID.
+     *
+     * @param supplier The ID value supplier.
+     * @return A new DataLayerBuilder.
+     */
     T withId(@NotNull Supplier<@NotNull String> supplier);
 }

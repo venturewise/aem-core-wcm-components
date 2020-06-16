@@ -26,16 +26,7 @@ import java.util.function.Supplier;
  * @param <T> The data builder type.
  * @param <K> The data type.
  */
-public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> {
-
-    /**
-     * Set the supplier that supplies the component's ID.
-     *
-     * @param supplier The ID value supplier.
-     * @return A new DataLayerBuilder.
-     */
-    @NotNull
-    T withId(@NotNull Supplier<@NotNull String> supplier);
+public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> extends IdRequiredDataBuilder<T, K> {
 
     /**
      * Build the data.
