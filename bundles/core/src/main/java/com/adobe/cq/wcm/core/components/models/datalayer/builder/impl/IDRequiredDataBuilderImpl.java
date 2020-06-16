@@ -13,35 +13,25 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-package com.adobe.cq.wcm.core.components.models.datalayer.builder;
+package com.adobe.cq.wcm.core.components.models.datalayer.builder.impl;
 
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.GenericDataBuilder;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.IdRequiredDataBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-/**
- * Generic data builder that specifies fields available on all data builders.
- * Every data builder should implement this interface.
- *
- * @param <T> The data builder type.
- * @param <K> The data type.
- */
-public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> {
+public class IDRequiredDataBuilderImpl<T extends GenericDataBuilder<T, K>, K> implements IdRequiredDataBuilder<T, K> {
 
-    /**
-     * Set the supplier that supplies the component's ID.
-     *
-     * @param supplier The ID value supplier.
-     * @return A new DataLayerBuilder.
-     */
     @NotNull
-    T withId(@NotNull Supplier<@NotNull String> supplier);
+    private final T builder;
 
-    /**
-     * Build the data.
-     *
-     * @return The data.
-     */
+    public IDRequiredDataBuilderImpl(@NotNull final T builder) {
+        this.builder = builder;
+    }
+
     @NotNull
-    K build();
+    public T withId(@NotNull Supplier<@NotNull String> supplier) {
+        return this.builder.withId(supplier);
+    }
 }

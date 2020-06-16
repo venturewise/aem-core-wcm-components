@@ -23,6 +23,7 @@ import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.AssetDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ContainerDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.IDRequiredDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.ImageComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.PageDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.impl.supplier.AssetDataLayerSupplier;
@@ -40,8 +41,7 @@ public final class DataLayerBuilder {
     /**
      * An empty DataLayerSupplier which has null values for all field value suppliers.
      */
-    private static final DataLayerSupplier EMPTY_SUPPLIER = new DataLayerSupplier() {
-    };
+    private static final DataLayerSupplier EMPTY_SUPPLIER = new DataLayerSupplier() {};
 
     /**
      * Private constructor to prevent instantiation of utility class.
@@ -55,8 +55,8 @@ public final class DataLayerBuilder {
      *
      * @return An empty ComponentDataBuilder.
      */
-    public static ComponentDataBuilder forComponent() {
-        return new ComponentDataBuilderImpl(EMPTY_SUPPLIER);
+    public static IdRequiredDataBuilder<ComponentDataBuilder, ComponentData> forComponent() {
+        return new IDRequiredDataBuilderImpl<>(new ComponentDataBuilderImpl(EMPTY_SUPPLIER));
     }
 
     /**
@@ -74,8 +74,8 @@ public final class DataLayerBuilder {
      *
      * @return An empty ContainerDataBuilder.
      */
-    public static ContainerDataBuilder forContainer() {
-        return new ContainerDataBuilderImpl(EMPTY_SUPPLIER);
+    public static IdRequiredDataBuilder<ContainerDataBuilder, ContainerData> forContainer() {
+        return new IDRequiredDataBuilderImpl<>(new ContainerDataBuilderImpl(EMPTY_SUPPLIER));
     }
 
     /**
@@ -93,8 +93,8 @@ public final class DataLayerBuilder {
      *
      * @return An empty ImageComponentDataBuilder.
      */
-    public static ImageComponentDataBuilder forImageComponent() {
-        return new ImageComponentDataBuilderImpl(EMPTY_SUPPLIER);
+    public static IdRequiredDataBuilder<ImageComponentDataBuilder, ImageData> forImageComponent() {
+        return new IDRequiredDataBuilderImpl<>(new ImageComponentDataBuilderImpl(EMPTY_SUPPLIER));
     }
 
     /**
@@ -112,8 +112,8 @@ public final class DataLayerBuilder {
      *
      * @return An empty PageDataBuilder.
      */
-    public static PageDataBuilder forPage() {
-        return new PageDataBuilderImpl(EMPTY_SUPPLIER);
+    public static IdRequiredDataBuilder<PageDataBuilder, PageData> forPage() {
+        return new IDRequiredDataBuilderImpl<>(new PageDataBuilderImpl(EMPTY_SUPPLIER));
     }
 
     /**
@@ -131,8 +131,8 @@ public final class DataLayerBuilder {
      *
      * @return An empty AssetDataBuilder.
      */
-    public static AssetDataBuilder forAsset() {
-        return new AssetDataBuilderImpl(EMPTY_SUPPLIER);
+    public static IdRequiredDataBuilder<AssetDataBuilder, AssetData> forAsset() {
+        return new IDRequiredDataBuilderImpl<>(new AssetDataBuilderImpl(EMPTY_SUPPLIER));
     }
 
     /**
