@@ -18,9 +18,10 @@ package com.adobe.cq.wcm.core.components.internal.models.v1;
 import java.util.List;
 import java.util.Locale;
 
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import org.apache.sling.api.SlingHttpServletRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jetbrains.annotations.NotNull;
 
 import com.adobe.cq.wcm.core.components.models.LanguageNavigationItem;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
@@ -28,7 +29,7 @@ import com.day.cq.wcm.api.Page;
 
 public class LanguageNavigationItemImpl extends NavigationItemImpl implements LanguageNavigationItem {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LanguageNavigationItemImpl.class);
+    // private static final Logger LOGGER = LoggerFactory.getLogger(LanguageNavigationItemImpl.class);
 
     protected String title;
     protected Locale locale;
@@ -70,12 +71,11 @@ public class LanguageNavigationItemImpl extends NavigationItemImpl implements La
         return language;
     }
 
-    /*
-     * DataLayerProvider implementation of field getters
-     */
-
     @Override
-    public String getDataLayerLanguage() {
-        return getLanguage();
+    @NotNull
+    protected final PageData getComponentData() {
+        return DataLayerBuilder.extending(super.getComponentData()).asPage()
+            .withLanguage(this::getLanguage)
+            .build();
     }
 }
