@@ -55,6 +55,11 @@ public class LayoutContainerImpl extends AbstractContainerImpl implements Layout
     }
 
     @Override
+    public String[] getDataLayerShownItems() {
+        return null;
+    }
+
+    @Override
     public @NotNull LayoutType getLayout() {
         return layout;
     }

@@ -62,5 +62,10 @@ public class AbstractContainerImplTest {
         protected List<ListItem> readItems() {
             return new ArrayList<>();
         }
+
+        @Override
+        public String[] getDataLayerShownItems() {
+            return null;
+        }
     }
 }
