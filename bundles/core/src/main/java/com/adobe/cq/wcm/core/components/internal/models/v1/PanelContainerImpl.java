@@ -31,7 +31,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
-public class PanelContainerImpl extends AbstractContainerImpl implements Container {
+public abstract class PanelContainerImpl extends AbstractContainerImpl implements Container {
 
     @Override
     @NotNull
@@ -60,8 +60,8 @@ public class PanelContainerImpl extends AbstractContainerImpl implements Contain
      *
      */
     static class JsonWrapper implements ComponentExporter {
-        private ComponentExporter inner;
-        private String panelTitle;
+        private final ComponentExporter inner;
+        private final String panelTitle;
 
         JsonWrapper(@NotNull ComponentExporter inner, ListItem item) {
             this.inner = inner;
