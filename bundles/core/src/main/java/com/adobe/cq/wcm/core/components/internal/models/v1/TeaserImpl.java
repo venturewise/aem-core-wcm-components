@@ -45,6 +45,8 @@ import com.adobe.cq.wcm.core.components.internal.Utils;
 import com.adobe.cq.wcm.core.components.models.Image;
 import com.adobe.cq.wcm.core.components.models.ListItem;
 import com.adobe.cq.wcm.core.components.models.Teaser;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import com.day.cq.commons.DownloadResource;
 import com.day.cq.commons.ImageResource;
 import com.day.cq.commons.jcr.JcrConstants;
@@ -292,23 +294,14 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
         return request.getResource().getResourceType();
     }
 
-    /*
-     * DataLayerProvider implementation of field getters
-     */
-
+    @NotNull
     @Override
-    public String getDataLayerTitle() {
-        return getTitle();
-    }
-
-    @Override
-    public String getDataLayerLinkUrl() {
-        return getLinkURL();
-    }
-
-    @Override
-    public String getDataLayerDescription() {
-        return getDescription();
+    protected ComponentData getComponentData() {
+        return DataLayerBuilder.extending(super.getComponentData()).asComponent()
+            .withTitle(this::getTitle)
+            .withLinkUrl(this::getLinkURL)
+            .withDescription(this::getDescription)
+            .build();
     }
 
 
@@ -376,20 +369,6 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
                 }
             }
             return ctaId;
-        }
-
-        /*
-         * DataLayerProvider implementation of field getters
-         */
-
-        @Override
-        public String getDataLayerLinkUrl() {
-            return getURL();
-        }
-
-        @Override
-        public String getDataLayerTitle() {
-            return getTitle();
         }
     }
 }

@@ -15,8 +15,12 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.internal.models.v1;
 
+import com.adobe.cq.wcm.core.components.models.ListItem;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.adobe.cq.wcm.core.components.internal.Utils;
@@ -28,7 +32,7 @@ import static com.adobe.cq.wcm.core.components.internal.Utils.ID_SEPARATOR;
  * Generates an ID for the item, using the ID of its parent as a prefix
  *
  */
-public abstract class AbstractListItemImpl extends AbstractComponentImpl {
+public abstract class AbstractListItemImpl extends AbstractComponentImpl implements ListItem {
 
     protected String parentId;
     protected String path;
@@ -46,6 +50,16 @@ public abstract class AbstractListItemImpl extends AbstractComponentImpl {
     public String getId() {
         String prefix = StringUtils.join(parentId, ID_SEPARATOR, ITEM_ID_PREFIX);
         return Utils.generateId(prefix, path);
+    }
+
+    @NotNull
+    @Override
+    protected ComponentData getComponentData() {
+        return DataLayerBuilder.extending(super.getComponentData())
+            .asComponent()
+            .withTitle(this::getTitle)
+            .withLinkUrl(this::getURL)
+            .build();
     }
 
 }
