@@ -285,7 +285,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
     private boolean checkSelected(@NotNull final Page page) {
         return this.currentPage.equals(page)
             || this.currentPage.getPath().startsWith(page.getPath() + "/")
-            || currentPageIsRedirectTarget(page);
+            || (!this.isShadowingDisabled && currentPageIsRedirectTarget(page));
     }
 
     /**
