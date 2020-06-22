@@ -18,6 +18,7 @@ package com.adobe.cq.wcm.core.components.internal.models.v1;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +28,6 @@ import javax.annotation.PostConstruct;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ResourceUtil;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
@@ -43,7 +43,6 @@ import com.adobe.cq.wcm.core.components.models.Navigation;
 import com.adobe.cq.wcm.core.components.models.NavigationItem;
 import com.day.cq.wcm.api.*;
 import com.day.cq.wcm.api.designer.Style;
-import com.day.cq.wcm.msm.api.LiveRelationship;
 import com.day.cq.wcm.msm.api.LiveRelationshipManager;
 
 /**
@@ -167,7 +166,26 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
             PageManager pageManager = currentPage.getPageManager();
             Page rootPage = pageManager.getPage(navigationRootPath);
             if (rootPage != null) {
-                Page navigationRootLanguageRoot = getPageResource(rootPage).map(languageManager::getLanguageRoot).orElse(null);
+                String rootPagePath = rootPage.getPath();
+                rootPage = getPageResource(currentPage).map(pageResource -> languageManager.getCqLanguage(pageResource, false))
+                    .flatMap(language ->
+                        // get the resource specified by rootPagePath in adjacent languages
+                        Optional.ofNullable(languageManager.getAdjacentLanguageInfo(this.resource.getResourceResolver(), rootPagePath))
+                            // stream the result set
+                            .map(i -> i.entrySet().stream())
+                            .orElse(Stream.empty())
+                            //only keep solutions for which the locale is the same as the current page locale
+                            .filter(i -> i.getKey().getLocale().equals(language.getLocale()))
+                            // get the value
+                            .map(Map.Entry::getValue)
+                            // keep only those where the rootPagePath (adjusted for language) exists
+                            .filter(LanguageManager.Info::exists)
+                            // get the page
+                            .map(LanguageManager.Info::getPath)
+                            .map(pageManager::getPage)
+                            .findAny())
+                    .orElse(rootPage);
+                /*Page navigationRootLanguageRoot = getPageResource(rootPage).map(languageManager::getLanguageRoot).orElse(null);
                 Page currentPageLanguageRoot = languageManager.getLanguageRoot(currentPage.getContentResource());
                 if (navigationRootLanguageRoot != null && currentPageLanguageRoot != null && !navigationRootLanguageRoot.equals
                     (currentPageLanguageRoot)) {
@@ -191,7 +209,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                     } catch (WCMException e) {
                         // ignore it
                     }
-                }
+                }*/
             }
             this.navigationRootPage = rootPage;
         }
