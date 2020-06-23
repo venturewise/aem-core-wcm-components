@@ -26,6 +26,8 @@ import java.util.stream.StreamSupport;
 
 import javax.annotation.PostConstruct;
 
+import com.day.cq.commons.Language;
+import com.day.cq.wcm.msm.api.LiveRelationship;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -167,6 +169,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
             Page rootPage = pageManager.getPage(navigationRootPath);
             if (rootPage != null) {
                 String rootPagePath = rootPage.getPath();
+                Map<Language, LanguageManager.Info> x = languageManager.getAdjacentLanguageInfo(this.resource.getResourceResolver(), rootPagePath);
                 rootPage = getPageResource(currentPage).map(pageResource -> languageManager.getCqLanguage(pageResource, false))
                     .flatMap(language ->
                         // get the resource specified by rootPagePath in adjacent languages
@@ -185,17 +188,9 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                             .map(pageManager::getPage)
                             .findAny())
                     .orElse(rootPage);
-                /*Page navigationRootLanguageRoot = getPageResource(rootPage).map(languageManager::getLanguageRoot).orElse(null);
+                Page navigationRootLanguageRoot = getPageResource(rootPage).map(languageManager::getLanguageRoot).orElse(null);
                 Page currentPageLanguageRoot = languageManager.getLanguageRoot(currentPage.getContentResource());
-                if (navigationRootLanguageRoot != null && currentPageLanguageRoot != null && !navigationRootLanguageRoot.equals
-                    (currentPageLanguageRoot)) {
-                    // check if there's a language copy of the navigation root
-                    Page languageCopyNavigationRoot = pageManager.getPage(ResourceUtil.normalize(currentPageLanguageRoot.getPath() + "/" +
-                        getRelativePath(navigationRootLanguageRoot, rootPage)));
-                    if (languageCopyNavigationRoot != null) {
-                        rootPage = languageCopyNavigationRoot;
-                    }
-                } else {
+                if (navigationRootLanguageRoot == null || currentPageLanguageRoot == null || navigationRootLanguageRoot.equals(currentPageLanguageRoot)) {
                     try {
                         String currentPagePath = currentPage.getPath() + "/";
                         rootPage = Optional.ofNullable((Iterator<LiveRelationship>) relationshipManager.getLiveRelationships(rootPage.adaptTo(Resource.class), null, null))
@@ -209,7 +204,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                     } catch (WCMException e) {
                         // ignore it
                     }
-                }*/
+                }
             }
             this.navigationRootPage = rootPage;
         }
