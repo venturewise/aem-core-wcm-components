@@ -20,7 +20,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -28,7 +27,6 @@ import java.util.stream.StreamSupport;
 import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
 import com.day.cq.commons.jcr.JcrConstants;
 import com.day.cq.wcm.api.PageManager;
-import com.day.cq.wcm.core.utils.PageInfoUtils;
 import com.day.text.Text;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -37,6 +35,7 @@ import com.day.cq.commons.Language;
 import com.day.cq.commons.LanguageUtil;
 import com.day.cq.wcm.api.LanguageManager;
 import com.day.cq.wcm.api.Page;
+import org.jetbrains.annotations.NotNull;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MockLanguageManager implements LanguageManager {
@@ -58,22 +57,14 @@ public class MockLanguageManager implements LanguageManager {
 
     @Override
     public Map<Language, Info> getAdjacentLanguageInfo(ResourceResolver resourceResolver, String path) {
-        Resource root = Optional.ofNullable(LanguageUtil.getLanguageRoot(path)).map(resourceResolver::getResource).orElse(null);
-        if (root == null) {
-            return null;
-        }
-        Resource parent = root.getParent();
-        if (parent == null) {
-            return null;
-        }
-        String relPath = path.substring(root.getPath().length());
-
-       return this.getCqLanguages(resourceResolver, path).stream()
-            .map(language -> {
-                String adjacentLanguagePath = parent.getPath() + "/" + language.toString() + relPath;
-                Resource adjacentLanguageResource = resourceResolver.getResource(adjacentLanguagePath);
-                return new InfoImpl(adjacentLanguagePath, adjacentLanguageResource, language);
-            }).collect(Collectors.toMap(InfoImpl::getLanguage, Function.identity()));
+        return Optional.ofNullable(LanguageUtil.getLanguageRoot(path))
+            .map(root -> path.substring(root.length()))
+            .map(relPath -> relPath.startsWith("/") ? relPath.substring(1) : relPath)
+            .map(relPath ->
+                this.getLanguageRootStream(resourceResolver, path)
+                    .map(info -> info.getChild(relPath, resourceResolver))
+                    .collect(Collectors.toMap(InfoImpl::getLanguage, i -> (Info) i)))
+            .orElse(null);
     }
 
     @Override
@@ -133,28 +124,28 @@ public class MockLanguageManager implements LanguageManager {
     @Override
     public Collection<Language> getCqLanguages(ResourceResolver resourceResolver, String path) {
         return this.getLanguageRootStream(resourceResolver, path)
-            .map(Resource::getName)
-            .map(LanguageUtil::getLanguage)
-            .filter(Objects::nonNull)
+            .map(InfoImpl::getLanguage)
             .collect(Collectors.toList());
     }
 
     @Override
     public Collection<Page> getLanguageRoots(ResourceResolver resourceResolver, String path) {
         return this.getLanguageRootStream(resourceResolver, path)
+            .map(InfoImpl::getResource)
             .map(res -> res.adaptTo(Page.class))
             .filter(Objects::nonNull)
             .collect(Collectors.toList());
     }
 
-    private Stream<Resource> getLanguageRootStream(ResourceResolver resourceResolver, String path) {
+    private Stream<InfoImpl> getLanguageRootStream(ResourceResolver resourceResolver, String path) {
         return Optional.ofNullable(LanguageUtil.getLanguageRoot(path))
             .map(resourceResolver::getResource)
             .map(Resource::getParent)
             .map(Resource::listChildren)
             .map(childIterator -> StreamSupport.stream(((Iterable<Resource>) () -> childIterator).spliterator(), false))
             .orElseGet(Stream::empty)
-            .filter(res -> Objects.nonNull(LanguageUtil.getLanguage(res.getName())));
+            .filter(res -> Objects.nonNull(LanguageUtil.getLanguage(res.getName())))
+            .map(res -> new InfoImpl(res.getPath(), res, LanguageUtil.getLanguage(res.getName())));
     }
 
     @Override
@@ -167,24 +158,28 @@ public class MockLanguageManager implements LanguageManager {
         private final Resource resource;
         private final Language language;
 
-        public InfoImpl(String path, Resource resource, Language language) {
+        public InfoImpl(final String path, final Resource resource, final Language language) {
             this.path = path;
             this.resource = resource;
             this.language = language;
         }
 
+        @Override
         public String getPath() { return this.path; }
 
+        @Override
         public boolean exists() {
             return this.resource != null;
         }
 
+        @Override
         public boolean hasContent() {
             return Optional.ofNullable(this.resource)
                 .map(res -> resource.getChild(JcrConstants.JCR_CONTENT))
                 .isPresent();
         }
 
+        @Override
         public long getLastModified() {
             return Optional.ofNullable(this.resource)
                 .map(res -> resource.getChild(JcrConstants.JCR_CONTENT))
@@ -193,8 +188,30 @@ public class MockLanguageManager implements LanguageManager {
                 .orElse(0L);
         }
 
-        Language getLanguage() {
+        private Resource getResource() {
+            return this.resource;
+        }
+
+        private Language getLanguage() {
             return this.language;
+        }
+
+        /**
+         * Gets the InfoImpl for a child resource under the current InfoImpl's path.
+         *
+         * This constructs a new InfoImpl using the path getPath() + / + relPath.
+         *
+         * @param relPath Path relative to the current path.
+         * @param resourceResolver A resource resolver.
+         * @return A new InfoImpl for the resource specified at relPath.
+         */
+        private InfoImpl getChild(@NotNull final String relPath, @NotNull final ResourceResolver resourceResolver) {
+            if (relPath.isEmpty()) {
+                return this;
+            }
+            String path = String.join("/", this.path, relPath);
+            Resource child = resourceResolver.getResource(path);
+            return new InfoImpl(path, child, this.getLanguage());
         }
     }
 }
