@@ -36,18 +36,18 @@ import com.day.cq.commons.LanguageUtil;
 import com.day.cq.wcm.api.LanguageManager;
 import com.day.cq.wcm.api.Page;
 import org.jetbrains.annotations.NotNull;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.jetbrains.annotations.Nullable;
 
 public class MockLanguageManager implements LanguageManager {
 
     @Override
-    public String getIsoCountry(Locale locale) {
-        throw new NotImplementedException();
+    public String getIsoCountry(final Locale locale) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     @Deprecated
-    public Map<Locale, Info> getAdjacentInfo(ResourceResolver resourceResolver, String path) {
+    public Map<Locale, Info> getAdjacentInfo(final ResourceResolver resourceResolver, final String path) {
         return Optional.ofNullable(getAdjacentLanguageInfo(resourceResolver, path))
             .map(Map::entrySet)
             .map(Collection::stream)
@@ -56,7 +56,7 @@ public class MockLanguageManager implements LanguageManager {
     }
 
     @Override
-    public Map<Language, Info> getAdjacentLanguageInfo(ResourceResolver resourceResolver, String path) {
+    public Map<Language, Info> getAdjacentLanguageInfo(final ResourceResolver resourceResolver, final String path) {
         return Optional.ofNullable(LanguageUtil.getLanguageRoot(path))
             .map(root -> path.substring(root.length()))
             .map(relPath -> relPath.startsWith("/") ? relPath.substring(1) : relPath)
@@ -68,24 +68,24 @@ public class MockLanguageManager implements LanguageManager {
     }
 
     @Override
-    public Locale getLanguage(Resource resource) {
+    public Locale getLanguage(final Resource resource) {
         return this.getLanguage(resource, true);
     }
 
     @Override
-    public Language getCqLanguage(Resource resource) {
+    public Language getCqLanguage(final Resource resource) {
         return this.getCqLanguage(resource, true);
     }
 
     @Override
-    public Locale getLanguage(Resource resource, boolean respectContent) {
+    public Locale getLanguage(final Resource resource, final boolean respectContent) {
         return Optional.ofNullable(getCqLanguage(resource, respectContent))
             .map(Language::getLocale)
             .orElse(null);
     }
 
     @Override
-    public Language getCqLanguage(Resource resource, boolean respectContent) {
+    public Language getCqLanguage(final Resource resource, final boolean respectContent) {
         Optional<Page> page = Optional.ofNullable(resource.getResourceResolver().adaptTo(PageManager.class))
             .map(pm -> pm.getContainingPage(resource));
 
@@ -107,7 +107,7 @@ public class MockLanguageManager implements LanguageManager {
     }
 
     @Override
-    public Page getLanguageRoot(Resource resource) {
+    public Page getLanguageRoot(final Resource resource) {
         return Optional.ofNullable(LanguageUtil.getLanguageRoot(resource.getPath()))
             .map(resource.getResourceResolver()::getResource)
             .map(res -> res.adaptTo(Page.class))
@@ -115,29 +115,30 @@ public class MockLanguageManager implements LanguageManager {
     }
 
     @Override
-    public Collection<Locale> getLanguages(ResourceResolver resourceResolver, String path) {
+    public Collection<Locale> getLanguages(final ResourceResolver resourceResolver, final String path) {
         return this.getCqLanguages(resourceResolver, path).stream()
             .map(Language::getLocale)
             .collect(Collectors.toList());
     }
 
     @Override
-    public Collection<Language> getCqLanguages(ResourceResolver resourceResolver, String path) {
+    public Collection<Language> getCqLanguages(final ResourceResolver resourceResolver, final String path) {
         return this.getLanguageRootStream(resourceResolver, path)
             .map(InfoImpl::getLanguage)
             .collect(Collectors.toList());
     }
 
     @Override
-    public Collection<Page> getLanguageRoots(ResourceResolver resourceResolver, String path) {
+    public Collection<Page> getLanguageRoots(final ResourceResolver resourceResolver, final String path) {
         return this.getLanguageRootStream(resourceResolver, path)
             .map(InfoImpl::getResource)
+            .filter(Objects::nonNull)
             .map(res -> res.adaptTo(Page.class))
             .filter(Objects::nonNull)
             .collect(Collectors.toList());
     }
 
-    private Stream<InfoImpl> getLanguageRootStream(ResourceResolver resourceResolver, String path) {
+    private Stream<InfoImpl> getLanguageRootStream(final ResourceResolver resourceResolver, final String path) {
         return Optional.ofNullable(LanguageUtil.getLanguageRoot(path))
             .map(resourceResolver::getResource)
             .map(Resource::getParent)
@@ -149,8 +150,8 @@ public class MockLanguageManager implements LanguageManager {
     }
 
     @Override
-    public Tree compareLanguageTrees(ResourceResolver resourceResolver, String s) {
-        throw new NotImplementedException();
+    public Tree compareLanguageTrees(final ResourceResolver resourceResolver, final String s) {
+        throw new UnsupportedOperationException();
     }
 
     private static final class InfoImpl implements LanguageManager.Info {
@@ -158,7 +159,7 @@ public class MockLanguageManager implements LanguageManager {
         private final Resource resource;
         private final Language language;
 
-        public InfoImpl(final String path, final Resource resource, final Language language) {
+        public InfoImpl(@NotNull final String path, @Nullable final Resource resource, @NotNull final Language language) {
             this.path = path;
             this.resource = resource;
             this.language = language;
@@ -188,10 +189,22 @@ public class MockLanguageManager implements LanguageManager {
                 .orElse(0L);
         }
 
+        /**
+         * The resource located at {@link #getPath()}, if it exists.
+         *
+         * @return The resource.
+         */
+        @Nullable
         private Resource getResource() {
             return this.resource;
         }
 
+        /**
+         * Get the language.
+         *
+         * @return The language.
+         */
+        @NotNull
         private Language getLanguage() {
             return this.language;
         }
