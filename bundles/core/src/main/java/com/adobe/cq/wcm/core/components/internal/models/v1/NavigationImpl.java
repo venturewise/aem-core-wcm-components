@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,7 +27,7 @@ import java.util.stream.StreamSupport;
 
 import javax.annotation.PostConstruct;
 
-import com.day.cq.commons.Language;
+import com.day.cq.commons.LanguageUtil;
 import com.day.cq.wcm.msm.api.LiveRelationship;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
@@ -167,10 +168,17 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                 .orElseGet(() -> currentStyle.get(PN_NAVIGATION_ROOT, String.class));
             PageManager pageManager = currentPage.getPageManager();
             Page rootPage = pageManager.getPage(navigationRootPath);
-            if (rootPage != null) {
+            // only deal with sibling languages or live copies if the navigation root is not within the current site
+            // TODO: this next statement is wrong.
+            if (rootPage != null /*&& !(currentPage.getPath() + "/").startsWith(rootPage.getPath() + "/")*/) {
+
+                // try to correct the language if the referenced navigation root comes from a sibling language
                 String rootPagePath = rootPage.getPath();
-                Map<Language, LanguageManager.Info> x = languageManager.getAdjacentLanguageInfo(this.resource.getResourceResolver(), rootPagePath);
-                rootPage = getPageResource(currentPage).map(pageResource -> languageManager.getCqLanguage(pageResource, false))
+                rootPage = getPageResource(currentPage).map(pageResource -> languageManager.getLanguageRoot(pageResource))
+                    // skip if the navigation root is within the current language root
+                    .filter(languageRoot -> !(rootPagePath + "/").startsWith(languageRoot.getPath() + "/"))
+                    .map(Page::getName)
+                    .map(LanguageUtil::getLanguage)
                     .flatMap(language ->
                         // get the resource specified by rootPagePath in adjacent languages
                         Optional.ofNullable(languageManager.getAdjacentLanguageInfo(this.resource.getResourceResolver(), rootPagePath))
@@ -186,29 +194,42 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                             // get the page
                             .map(LanguageManager.Info::getPath)
                             .map(pageManager::getPage)
+                            .filter(Objects::nonNull)
                             .findAny())
                     .orElse(rootPage);
-                Page navigationRootLanguageRoot = getPageResource(rootPage).map(languageManager::getLanguageRoot).orElse(null);
-                Page currentPageLanguageRoot = languageManager.getLanguageRoot(currentPage.getContentResource());
-                if (navigationRootLanguageRoot == null || currentPageLanguageRoot == null || navigationRootLanguageRoot.equals(currentPageLanguageRoot)) {
-                    try {
-                        String currentPagePath = currentPage.getPath() + "/";
-                        rootPage = Optional.ofNullable((Iterator<LiveRelationship>) relationshipManager.getLiveRelationships(rootPage.adaptTo(Resource.class), null, null))
-                            .map(liveRelationshipIterator -> StreamSupport.stream(((Iterable<LiveRelationship>) () -> liveRelationshipIterator).spliterator(), false))
-                            .orElseGet(Stream::empty)
-                            .map(LiveRelationship::getTargetPath)
-                            .filter(target -> currentPagePath.startsWith(target + "/"))
-                            .map(pageManager::getPage)
-                            .findFirst()
-                            .orElse(rootPage);
-                    } catch (WCMException e) {
-                        // ignore it
-                    }
-                }
+
+                // correct the navigation root if the referenced navigation root points to a page that is the source of the current pages live relationship
+                // i.e. the current site is a live copy of the referenced navigation root.
+                rootPage = this.safeGetLiveRelationships(rootPage)
+                    .map(liveRelationshipIterator -> StreamSupport.stream(((Iterable<LiveRelationship>) () -> liveRelationshipIterator).spliterator(), false))
+                    .orElseGet(Stream::empty)
+                    .map(LiveRelationship::getTargetPath)
+                    .filter(target -> (currentPage.getPath() + "/").startsWith(target + "/"))
+                    .map(pageManager::getPage)
+                    .findFirst()
+                    .orElse(rootPage);
             }
             this.navigationRootPage = rootPage;
         }
         return this.navigationRootPage;
+    }
+
+    /**
+     * Get the live relationships iterator for the specified page.
+     * This method is safe in that the possible exception is suppressed.
+     *
+     * @param page The page for which to get a stream of live relationships.
+     * @return The stream of live relationships, or empty stream if exception.
+     */
+    @SuppressWarnings("unchecked")
+    private Optional<Iterator<LiveRelationship>> safeGetLiveRelationships(@NotNull final Page page) {
+        try {
+            return Optional.ofNullable(
+                (Iterator<LiveRelationship>) relationshipManager.getLiveRelationships(page.adaptTo(Resource.class), null, null)
+            );
+        } catch (WCMException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -311,23 +332,6 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
         return NavigationItemImpl.getRedirectTarget(page)
             .filter(target -> target.equals(currentPage))
             .isPresent();
-    }
-
-    /**
-     * Get the relative path between the two pages.
-     *
-     * @param root The root page.
-     * @param child The child page.
-     * @return The relative path between root and child page, null if child is not a child of root.
-     */
-    @Nullable
-    private String getRelativePath(@NotNull final Page root, @NotNull final Page child) {
-        if (child.equals(root)) {
-            return ".";
-        } else if ((child.getPath() + "/").startsWith(root.getPath())) {
-            return child.getPath().substring(root.getPath().length() + 1);
-        }
-        return null;
     }
 
     /**
