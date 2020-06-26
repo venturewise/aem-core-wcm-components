@@ -159,6 +159,7 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
 
     /**
      * Get the effective navigation root page.
+     * This method will correct/transform the provided navigation root to try to correct for language/live relationships.
      *
      * @return The effective navigation root page.
      */
@@ -201,8 +202,6 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
                 // correct the navigation root if the referenced navigation root points to a page that is the source of the current pages live relationship
                 // i.e. the current site is a live copy of the referenced navigation root.
                 rootPage = this.safeGetLiveRelationships(rootPage)
-                    .map(liveRelationshipIterator -> StreamSupport.stream(((Iterable<LiveRelationship>) () -> liveRelationshipIterator).spliterator(), false))
-                    .orElseGet(Stream::empty)
                     .map(LiveRelationship::getTargetPath)
                     .filter(target -> (currentPage.getPath() + "/").startsWith(target + "/"))
                     .map(pageManager::getPage)
@@ -222,13 +221,14 @@ public class NavigationImpl extends AbstractComponentImpl implements Navigation 
      * @return The stream of live relationships, or empty stream if exception.
      */
     @SuppressWarnings("unchecked")
-    private Optional<Iterator<LiveRelationship>> safeGetLiveRelationships(@NotNull final Page page) {
+    private Stream<LiveRelationship> safeGetLiveRelationships(@NotNull final Page page) {
         try {
             return Optional.ofNullable(
-                (Iterator<LiveRelationship>) relationshipManager.getLiveRelationships(page.adaptTo(Resource.class), null, null)
-            );
+                (Iterator<LiveRelationship>) relationshipManager.getLiveRelationships(page.adaptTo(Resource.class), null, null))
+                .map(it -> StreamSupport.stream(((Iterable<LiveRelationship>) () -> it).spliterator(), false))
+                .orElseGet(Stream::empty);
         } catch (WCMException e) {
-            return Optional.empty();
+            return Stream.empty();
         }
     }
 
