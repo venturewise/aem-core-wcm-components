@@ -16,12 +16,15 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jcr.RangeIterator;
 
+import com.adobe.cq.wcm.core.components.testing.LanguageManagerImpl;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.testing.mock.sling.servlet.MockSlingHttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -79,20 +82,30 @@ class NavigationImplTest {
     private static final String NAV_COMPONENT_15 = "/content/navigation-livecopy/jcr:content/root/navigation-component-15";
     private static final String NAV_COMPONENT_16 = TEST_ROOT + "/jcr:content/root/navigation-component-16";
     private static final String NAV_COMPONENT_17 = TEST_ROOT + "/jcr:content/root/navigation-component-17";
+    private static final String NAV_COMPONENT_18 = "/content/navigation-sibling-language-root/fr/home/jcr:content/root/navigation";
 
+    Map<String, String> LIVE_RELATIONSHIPS = new HashMap<String, String>() {{
+        this.put("/content/navigation-blueprint", "/content/navigation-livecopy");
+        this.put("/content/navigation-3-language-master/en", "/content/navigation-3-region/us/en");
+    }};
     @BeforeEach
     void setUp() throws WCMException {
         context.load().json(TEST_BASE + CoreComponentTestContext.TEST_CONTENT_JSON, "/content");
         context.load().json("/navigation/test-conf.json", "/conf");
-        context.registerService(LanguageManager.class, new MockLanguageManager());
+        context.registerService(LanguageManager.class, new LanguageManagerImpl());
         LiveRelationshipManager relationshipManager = mock(LiveRelationshipManager.class);
         when(relationshipManager.getLiveRelationships(any(Resource.class), isNull(), isNull())).then(
                 invocation -> {
                     Object[] arguments = invocation.getArguments();
                     Resource resource = (Resource) arguments[0];
-                    if ("/content/navigation-blueprint".equals(resource.getPath())) {
+                    String target = LIVE_RELATIONSHIPS.entrySet().stream()
+                        .filter(entry -> (resource.getPath() + "/").startsWith(entry.getKey() + "/"))
+                        .map(entry -> entry.getValue() + resource.getPath().substring(entry.getKey().length()))
+                        .findAny()
+                        .orElse(null);
+                    if (target != null) {
                         LiveRelationship liveRelationship = mock(LiveRelationship.class);
-                        when(liveRelationship.getTargetPath()).thenReturn("/content/navigation-livecopy");
+                        when(liveRelationship.getTargetPath()).thenReturn(target);
                         final ArrayList<LiveRelationship> relationships = new ArrayList<>();
                         relationships.add(liveRelationship);
                         final Iterator iterator = relationships.iterator();
@@ -237,6 +250,18 @@ class NavigationImplTest {
                         "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-3.html"},
                 {"/content/navigation/navigation-2", 0, false, "/content/navigation/navigation-2.html"}
         };
+        verifyNavigationItems(expectedPages, getNavigationItems(navigation));
+    }
+
+    @Test
+    void testNavigationWithSiblingLanguage() {
+        Navigation navigation = getNavigationUnderTest(NAV_COMPONENT_18);
+        Object[][] expectedPages = {
+            {"/content/navigation-sibling-language-root/fr/home/subpage1", 0, false, "/content/navigation-sibling-language-root/fr/home/subpage1.html"},
+            {"/content/navigation-sibling-language-root/fr/home/subpage2", 0, false, "/content/navigation-sibling-language-root/fr/home/subpage2.html"},
+            {"/content/navigation-sibling-language-root/fr/home/subpage3", 0, false, "/content/navigation-sibling-language-root/fr/home/subpage3.html"},
+        };
+        //TODO model
         verifyNavigationItems(expectedPages, getNavigationItems(navigation));
     }
 
@@ -403,16 +428,14 @@ class NavigationImplTest {
         Object[][] expectedPages = {
             {"/content/navigation/navigation-1", 0, false, "/navigation-1-vanity"},
             {"/content/navigation/navigation-1/navigation-1-1", 1, false, "/content/navigation/navigation-1/navigation-1-1.html"},
-            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-1", 2, false,
-                "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-1.html"},
-            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2", 2, false,
-                "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2.html"},
-            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-2/navigation-1-1-2-2-1", 3, false,
-                "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-2/navigation-1-1-2-2-1.html"},
-            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-3", 3, false,
-                "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-3.html"},
+            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-1", 2, false, "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-1.html"},
+            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2", 2, false, "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2.html"},
+            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-2/navigation-1-1-2-2-1", 3, false, "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-2/navigation-1-1-2-2-1.html"},
+            {"/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-3", 3, false, "/content/navigation/navigation-1/navigation-1-1/navigation-1-1-2/navigation-1-1-2-3.html"},
             {"/content/navigation/navigation-2", 0, false, "/content/navigation/navigation-2.html"}
         };
+        getNavigationItems(navigation).stream().map(i -> i.getPath()).forEach(i -> System.out.println(i));
+
         verifyNavigationItems(expectedPages, getNavigationItems(navigation));
         Utils.testJSONExport(navigation, Utils.getTestExporterJSONPath(TEST_BASE, "navigation13"));
     }
