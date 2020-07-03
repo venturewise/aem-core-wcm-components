@@ -127,44 +127,38 @@ public class ImageImpl extends com.adobe.cq.wcm.core.components.internal.models.
     @PostConstruct
     protected void initModel() {
         super.initModel();
-        boolean altValueFromDAM = properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true));
-        boolean titleValueFromDAM = properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true));
         displayPopupTitle = properties.get(PN_DISPLAY_POPUP_TITLE, currentStyle.get(PN_DISPLAY_POPUP_TITLE, true));
-        boolean uuidDisabled = currentStyle.get(PN_UUID_DISABLED, false);
-        if (StringUtils.isNotEmpty(fileReference)) {
-            // the image is coming from DAM
-            final Resource assetResource = request.getResourceResolver().getResource(fileReference);
-            if (assetResource != null) {
-                Asset asset = assetResource.adaptTo(Asset.class);
-                if (asset != null) {
-                    if (!uuidDisabled) {
-                        uuid = asset.getID();
-                    } else {
-                        uuid = null;
-                    }
-                    if (!isDecorative && altValueFromDAM) {
-                        String damDescription = asset.getMetadataValue(DamConstants.DC_DESCRIPTION);
-                        if(StringUtils.isEmpty(damDescription)) {
-                            damDescription = asset.getMetadataValue(DamConstants.DC_TITLE);
-                        }
-                        if (StringUtils.isNotEmpty(damDescription)) {
-                            alt = damDescription;
-                        }
-                    }
-                    if (titleValueFromDAM) {
-                        String damTitle = asset.getMetadataValue(DamConstants.DC_TITLE);
-                        if (StringUtils.isNotEmpty(damTitle)) {
-                            title = damTitle;
-                        }
-                    }
-                } else {
-                    LOGGER.error("Unable to adapt resource '{}' used by image '{}' to an asset.", fileReference,
-                            request.getResource().getPath());
-                }
-            } else {
-                LOGGER.error("Unable to find resource '{}' used by image '{}'.", fileReference, request.getResource().getPath());
-            }
+
+        // get the asset
+        Optional<Asset> asset = Optional.ofNullable(this.fileReference)
+            .filter(StringUtils::isNotEmpty)
+            .map(request.getResourceResolver()::getResource)
+            .flatMap(this::getAsset);
+
+        // get the UUID
+        uuid = asset
+            .filter(a -> !currentStyle.get(PN_UUID_DISABLED, false))
+            .map(Asset::getID)
+            .orElse(null);
+
+        // get the alt value
+        if (!isDecorative && properties.get(PN_ALT_VALUE_FROM_DAM, currentStyle.get(PN_ALT_VALUE_FROM_DAM, true))) {
+            this.alt = asset.map(a -> a.getMetadataValue(DamConstants.DC_DESCRIPTION))
+                .filter(StringUtils::isNotEmpty)
+                .orElseGet(() -> asset
+                    .map(a -> a.getMetadataValue(DamConstants.DC_TITLE))
+                    .filter(StringUtils::isNotEmpty)
+                    .orElse(this.alt));
         }
+
+        // get the title
+        if (properties.get(PN_TITLE_VALUE_FROM_DAM, currentStyle.get(PN_TITLE_VALUE_FROM_DAM, true))) {
+            this.title = asset.map(a -> a.getMetadataValue(DamConstants.DC_TITLE))
+                .filter(StringUtils::isNotEmpty)
+                .orElse(this.title);
+        }
+
+
         if (hasContent) {
             disableLazyLoading = currentStyle.get(PN_DESIGN_LAZY_LOADING_ENABLED, true);
 
@@ -175,7 +169,7 @@ public class ImageImpl extends com.adobe.cq.wcm.core.components.internal.models.
             }
             srcUriTemplate = baseResourcePath + DOT + staticSelectors +
                 SRC_URI_TEMPLATE_WIDTH_VAR + DOT + extension +
-                (inTemplate ? templateRelativePath : "") + (lastModifiedDate > 0 ?("/" + lastModifiedDate +
+                (inTemplate ? templateRelativePath : "") + (lastModifiedDate > 0 ? ("/" + lastModifiedDate +
                 (StringUtils.isNotBlank(imageName) ? ("/" + imageName): "") + DOT + extension): "");
 
             // if content policy delegate path is provided pass it to the image Uri
@@ -188,6 +182,15 @@ public class ImageImpl extends com.adobe.cq.wcm.core.components.internal.models.
         }
 
         this.lazyThreshold = currentStyle.get(PN_DESIGN_LAZY_THRESHOLD, 0);
+    }
+
+    private Optional<Asset> getAsset(@NotNull final Resource assetResource) {
+        Optional<Asset> asset = Optional.ofNullable(assetResource.adaptTo(Asset.class));
+        if (!asset.isPresent()) {
+            LOGGER.error("Unable to adapt resource '{}' used by image '{}' to an asset.", assetResource.getPath(),
+                request.getResource().getPath());
+        }
+        return asset;
     }
 
     @NotNull
