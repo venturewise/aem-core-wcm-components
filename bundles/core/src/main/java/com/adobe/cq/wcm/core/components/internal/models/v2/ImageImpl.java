@@ -19,6 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 
@@ -69,6 +75,21 @@ public class ImageImpl extends com.adobe.cq.wcm.core.components.internal.models.
      * The path of the delegated content policy.
      */
     private static final String CONTENT_POLICY_DELEGATE_PATH = "contentPolicyDelegatePath";
+    /**
+     * Area regular expression.
+     */
+    private static final String AREA_REGEX =
+        "(?<shape>[a-z]+)"
+            + "\\((?<coords>(?:\\d+)(?:,(?:\\d+))*)\\)"
+            + "(?:\"(?<href>[^\"]*)\""
+            + "(?:\\|\"(?<target>[^\"]*)\""
+            + "(?:\\|\"(?<alt>[^\"]*)\""
+            + "(?:\\|\\((?<relativeCoordinates>(?:-?\\d+\\.?\\d*(?:,-?\\d+\\.?\\d*))+)\\))?)?)?)";
+
+    /**
+     * The compiled Pattern for {@link #AREA_REGEX}.
+     */
+    private static final Pattern AREA_PATTERN = Pattern.compile(AREA_REGEX);
 
     /**
      * Placeholder for the SRC URI template.
@@ -192,42 +213,30 @@ public class ImageImpl extends com.adobe.cq.wcm.core.components.internal.models.
 
     @Override
     public List<ImageArea> getAreas() {
-        if (areas == null ) {
-            areas = new ArrayList<>();
+        if (areas == null) {
             if (hasContent) {
-                String mapProperty = properties.get(Image.PN_MAP, String.class);
-                if (StringUtils.isNotEmpty(mapProperty)) {
-                    // Parse the image map areas as defined at {@code Image.PN_MAP}
-                    String[] mapAreas = StringUtils.split(mapProperty, "][");
-                    for (String area : mapAreas) {
-                        int coordinatesEndIndex = area.indexOf(')');
-                        if (coordinatesEndIndex < 0) {
-                            break;
-                        }
-                        String shapeAndCoords = StringUtils.substring(area, 0, coordinatesEndIndex + 1);
-                        String shape = StringUtils.substringBefore(shapeAndCoords, "(");
-                        String coordinates = StringUtils.substringBetween(shapeAndCoords, "(", ")");
-                        String remaining = StringUtils.substring(area, coordinatesEndIndex + 1);
-                        String[] remainingTokens = StringUtils.split(remaining, "|");
-                        if (StringUtils.isBlank(shape) || StringUtils.isBlank(coordinates)) {
-                            break;
-                        }
-                        if (remainingTokens.length > 0) {
-                            String href = StringUtils.removeAll(remainingTokens[0], "\"");
-                            if (StringUtils.isBlank(href)) {
-                                break;
-                            }
-                            String target = remainingTokens.length > 1 ? StringUtils.removeAll(remainingTokens[1], "\"") : "";
-                            String alt = remainingTokens.length > 2 ? StringUtils.removeAll(remainingTokens[2], "\"") : "";
-                            String relativeCoordinates = remainingTokens.length > 3 ? remainingTokens[3] : "";
-                            relativeCoordinates = StringUtils.substringBetween(relativeCoordinates, "(", ")");
-                            if (href.startsWith("/")) {
-                                href = Utils.getURL(request, pageManager, href);
-                            }
-                            areas.add(new ImageAreaImpl(shape, coordinates, relativeCoordinates, href, target, alt));
-                        }
-                    }
-                }
+                this.areas = Optional.ofNullable(properties.get(Image.PN_MAP, String.class))
+                    .filter(StringUtils::isNotEmpty)
+                    .map(mapProperty -> StringUtils.split(mapProperty, "]["))
+                    .map(Arrays::stream)
+                    .orElseGet(Stream::empty)
+                    .map(AREA_PATTERN::matcher)
+                    .filter(Matcher::matches)
+                    .map(matcher -> Optional.ofNullable(matcher.group("href"))
+                        .filter(StringUtils::isNotBlank)
+                        .map(href -> href.startsWith("/") ? Utils.getURL(request, pageManager, href) : href)
+                        .map(href -> new ImageAreaImpl(
+                            Optional.ofNullable(matcher.group("shape")).orElse(""),
+                            Optional.ofNullable(matcher.group("coords")).orElse(""),
+                            Optional.ofNullable(matcher.group("relativeCoordinates")).orElse(""),
+                            href,
+                            Optional.ofNullable(matcher.group("target")).orElse(""),
+                            Optional.ofNullable(matcher.group("alt")).orElse("")))
+                        .orElse(null))
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+            } else {
+                this.areas = new ArrayList<>();
             }
         }
         return Collections.unmodifiableList(areas);
