@@ -18,9 +18,11 @@ package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.AssetDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ContainerDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataLayerExtenderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.IDRequiredDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ImageComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.PageDataBuilderImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataExtenderSupplier;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataLayerSupplier;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
@@ -107,4 +109,23 @@ public final class DataLayerBuilder {
         return new AssetDataBuilderImpl(new AssetDataLayerSupplier(asset));
     }
 
+    /**
+     * Get a AssetDataBuilder that extends existing asset data.
+     *
+     * @param assetData The asset data to extend.
+     * @return A new AssetDataBuilder pre-initialized with the existing asset data.
+     */
+    public static AssetDataBuilder extendingAsset(@NotNull final AssetData assetData) {
+        return new AssetDataBuilderImpl(new AssetDataExtenderSupplier(assetData));
+    }
+
+    /**
+     * Extend an existing component data layer model.
+     *
+     * @param componentData The component data to extend.
+     * @return The component data layer extender.
+     */
+    public static ComponentDataLayerExtender extending(@NotNull final ComponentData componentData) {
+        return new ComponentDataLayerExtenderImpl(componentData);
+    }
 }
