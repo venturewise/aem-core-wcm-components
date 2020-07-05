@@ -78,9 +78,12 @@ public final class AssetDataBuilderImpl extends AbstractDataBuilder<AssetDataBui
         return this.createInstance(new LastModifiedDateFieldWrapper(this.getDataLayerSupplier(), supplier));
     }
 
-    @Override
     @NotNull
-    public AssetData build() {
-        return new AssetDataImpl(this.getDataLayerSupplier());
+    @Override
+    public AssetData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new AssetDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingAssetDataImpl(new AssetDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

@@ -18,6 +18,7 @@ package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.AssetDataFieldWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ImageComponentDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -54,7 +55,10 @@ public final class ImageComponentDataBuilderImpl
 
     @NotNull
     @Override
-    public ImageData build() {
-        return new ComponentDataImpl(this.getDataLayerSupplier());
+    public ImageData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

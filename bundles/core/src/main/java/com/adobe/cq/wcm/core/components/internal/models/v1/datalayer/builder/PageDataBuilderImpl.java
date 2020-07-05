@@ -20,6 +20,7 @@ import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.sup
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TagsFieldWrapper;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TemplatePathFieldWrapper;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.UrlFieldWrapper;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.PageDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -72,9 +73,12 @@ public final class PageDataBuilderImpl
         return this.createInstance(new LanguageFieldWrapper(this.getDataLayerSupplier(), supplier));
     }
 
-    @Override
     @NotNull
-    public PageData build() {
-        return new ComponentDataImpl(this.getDataLayerSupplier());
+    @Override
+    public PageData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

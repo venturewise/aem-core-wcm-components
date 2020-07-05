@@ -42,7 +42,10 @@ public final class ComponentDataBuilderImpl extends AbstractComponentDataBuilder
 
     @NotNull
     @Override
-    public ComponentData build() {
-        return new ComponentDataImpl(this.getDataLayerSupplier());
+    public ComponentData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

@@ -53,7 +53,10 @@ public final class ContainerDataBuilderImpl
 
     @NotNull
     @Override
-    public ContainerData build() {
-        return new ComponentDataImpl(this.getDataLayerSupplier());
+    public ContainerData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }
