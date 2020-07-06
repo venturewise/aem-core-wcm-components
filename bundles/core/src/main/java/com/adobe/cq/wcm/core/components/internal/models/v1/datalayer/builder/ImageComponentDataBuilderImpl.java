@@ -16,9 +16,8 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.AssetDataFieldWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
-import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ImageComponentDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -44,7 +43,7 @@ public final class ImageComponentDataBuilderImpl
     @Override
     @NotNull
     public ImageComponentDataBuilderImpl withAssetData(@NotNull final Supplier<AssetData> supplier) {
-        return this.createInstance(new AssetDataFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setAssetData(supplier));
     }
 
     @Override

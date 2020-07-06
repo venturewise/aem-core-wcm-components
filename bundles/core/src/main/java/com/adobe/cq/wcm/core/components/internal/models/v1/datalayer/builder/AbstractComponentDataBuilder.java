@@ -16,14 +16,7 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.DescriptionFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.IdFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.LastModifiedDateFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.LinkUrlFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.ParentIdFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TextFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TitleFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TypeFieldWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.GenericComponentDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -54,50 +47,50 @@ abstract class AbstractComponentDataBuilder<T extends GenericComponentDataBuilde
 
     @Override
     @NotNull
-    public T withId(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new IdFieldWrapper(this.getDataLayerSupplier(), supplier));
+    public T withId(@NotNull final Supplier<@NotNull String> supplier) {
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setId(supplier));
     }
 
     @Override
     @NotNull
     public T withType(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new TypeFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setType(supplier));
     }
 
     @Override
     @NotNull
     public T withLastModifiedDate(@NotNull final Supplier<Date> supplier) {
-        return this.createInstance(new LastModifiedDateFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setLastModifiedDate(supplier));
     }
 
     @Override
     @NotNull
     public T withParentId(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new ParentIdFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setParentId(supplier));
     }
 
     @Override
     @NotNull
     public T withTitle(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new TitleFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTitle(supplier));
     }
 
     @Override
     @NotNull
     public T withDescription(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new DescriptionFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setDescription(supplier));
     }
 
     @Override
     @NotNull
     public T withText(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new TextFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setText(supplier));
     }
 
     @Override
     @NotNull
     public T withLinkUrl(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new LinkUrlFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setLinkUrl(supplier));
     }
 
 }

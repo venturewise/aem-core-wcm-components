@@ -16,7 +16,7 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.ShownItemsFieldWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ContainerDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +42,7 @@ public final class ContainerDataBuilderImpl
     @Override
     @NotNull
     public ContainerDataBuilder withShownItems(@NotNull final Supplier<String[]> supplier) {
-        return this.createInstance(new ShownItemsFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setShownItems(supplier));
     }
 
     @Override
