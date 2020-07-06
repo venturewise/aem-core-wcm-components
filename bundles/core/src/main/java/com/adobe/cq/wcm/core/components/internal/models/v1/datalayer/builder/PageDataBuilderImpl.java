@@ -16,10 +16,7 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.LanguageFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TagsFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.TemplatePathFieldWrapper;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.fields.UrlFieldWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.PageDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -51,25 +48,25 @@ public final class PageDataBuilderImpl
     @Override
     @NotNull
     public PageDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
-        return this.createInstance(new TagsFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTags(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withUrl(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new UrlFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setUrl(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withTemplatePath(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new TemplatePathFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTemplatePath(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withLanguage(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new LanguageFieldWrapper(this.getDataLayerSupplier(), supplier));
+        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setLanguage(supplier));
     }
 
     @Override

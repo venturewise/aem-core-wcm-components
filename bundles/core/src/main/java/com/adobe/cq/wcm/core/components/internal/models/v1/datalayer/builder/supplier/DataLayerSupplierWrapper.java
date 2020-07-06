@@ -17,6 +17,7 @@ package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.su
 
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Date;
 import java.util.Optional;
@@ -25,13 +26,103 @@ import java.util.function.Supplier;
 /**
  * Wrapper for {@link DataLayerSupplier}.
  */
-public abstract class DataLayerSupplierWrapper implements DataLayerSupplier {
+public final class DataLayerSupplierWrapper implements DataLayerSupplier {
 
     /**
      * The wrapped data layer supplier.
      */
     @NotNull
     private final DataLayerSupplier wrappedSupplier;
+
+    /**
+     * The ID value supplier.
+     */
+    @Nullable
+    private Supplier<@NotNull String> idSupplier;
+
+    /**
+     * The Type value supplier.
+     */
+    @Nullable
+    private Supplier<String> typeSupplier;
+
+    /**
+     * The Type value supplier.
+     */
+    @Nullable
+    private Supplier<Date> lastModifiedDateSupplier;
+
+    /**
+     * The parent ID value supplier.
+     */
+    @Nullable
+    private Supplier<String> parentIdSupplier;
+
+    /**
+     * The Title value supplier.
+     */
+    @Nullable
+    private Supplier<String> titleSupplier;
+
+    /**
+     * The Description value supplier.
+     */
+    @Nullable
+    private Supplier<String> descriptionSupplier;
+
+    /**
+     * The Text value supplier.
+     */
+    @Nullable
+    private Supplier<String> textSupplier;
+
+    /**
+     * The link URL value supplier.
+     */
+    @Nullable
+    private Supplier<String> linkUrlSupplier;
+
+    /**
+     * The shown items value supplier.
+     */
+    @Nullable
+    private Supplier<String[]> shownItemsSupplier;
+
+    /**
+     * The asset data value supplier.
+     */
+    @Nullable
+    private Supplier<AssetData> assetDataSupplier;
+
+    /**
+     * The URL value supplier.
+     */
+    @Nullable
+    private Supplier<String> urlSupplier;
+
+    /**
+     * The format value supplier.
+     */
+    @Nullable
+    private Supplier<String> formatSupplier;
+
+    /**
+     * The tags value supplier.
+     */
+    @Nullable
+    private Supplier<String[]> tagsSupplier;
+
+    /**
+     * The template path value supplier.
+     */
+    @Nullable
+    private Supplier<String> templatePathSupplier;
+
+    /**
+     * The language value supplier.
+     */
+    @Nullable
+    private Supplier<String> languageSupplier;
 
     /**
      * Construct a wrapper for a {@link DataLayerSupplier}.
@@ -45,100 +136,297 @@ public abstract class DataLayerSupplierWrapper implements DataLayerSupplier {
     @Override
     @NotNull
     public Supplier<@NotNull String> getId() {
-        return this.getWrappedSupplier().getId();
+        return Optional.ofNullable(this.idSupplier).orElseGet(this.wrappedSupplier::getId);
+    }
+
+    /**
+     * Set the ID field value supplier.
+     *
+     * @param supplier The ID field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setId(@NotNull final Supplier<@NotNull String> supplier) {
+        this.idSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getType() {
-        return this.getWrappedSupplier().getType();
+        if (this.typeSupplier != null) {
+            return Optional.of(this.typeSupplier);
+        }
+        return this.wrappedSupplier.getType();
+    }
+
+    /**
+     * Set the type field value supplier.
+     *
+     * @param supplier The type field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setType(@NotNull final Supplier<String> supplier) {
+        this.typeSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<Date>> getLastModifiedDate() {
-        return this.getWrappedSupplier().getLastModifiedDate();
+        if (this.lastModifiedDateSupplier != null) {
+            return Optional.of(this.lastModifiedDateSupplier);
+        }
+        return this.wrappedSupplier.getLastModifiedDate();
+    }
+
+    /**
+     * Set the last modified date field value supplier.
+     *
+     * @param supplier The last modified date field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setLastModifiedDate(@NotNull final Supplier<Date> supplier) {
+        this.lastModifiedDateSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getParentId() {
-        return this.getWrappedSupplier().getParentId();
+        if (this.parentIdSupplier != null) {
+            return Optional.of(this.parentIdSupplier);
+        }
+        return this.wrappedSupplier.getParentId();
+    }
+
+    /**
+     * Set the parent ID field value supplier.
+     *
+     * @param supplier The parent ID field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setParentId(@NotNull final Supplier<String> supplier) {
+        this.parentIdSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getTitle() {
-        return this.getWrappedSupplier().getTitle();
+        if (this.titleSupplier != null) {
+            return Optional.of(this.titleSupplier);
+        }
+        return this.wrappedSupplier.getTitle();
+    }
+
+    /**
+     * Set the title field value supplier.
+     *
+     * @param supplier The title field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setTitle(@NotNull final Supplier<String> supplier) {
+        this.titleSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getDescription() {
-        return this.getWrappedSupplier().getDescription();
+        if (this.descriptionSupplier != null) {
+            return Optional.of(this.descriptionSupplier);
+        }
+        return this.wrappedSupplier.getDescription();
+    }
+
+    /**
+     * Set the description field value supplier.
+     *
+     * @param supplier The description field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setDescription(@NotNull final Supplier<String> supplier) {
+        this.descriptionSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getText() {
-        return this.getWrappedSupplier().getText();
+        if (this.textSupplier != null) {
+            return Optional.of(this.textSupplier);
+        }
+        return this.wrappedSupplier.getText();
+    }
+
+    /**
+     * Set the text field value supplier.
+     *
+     * @param supplier The text field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setText(@NotNull final Supplier<String> supplier) {
+        this.textSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getLinkUrl() {
-        return this.getWrappedSupplier().getLinkUrl();
+        if (this.linkUrlSupplier != null) {
+            return Optional.of(this.linkUrlSupplier);
+        }
+        return this.wrappedSupplier.getLinkUrl();
+    }
+
+    /**
+     * Set the link URL field value supplier.
+     *
+     * @param supplier The link URL field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setLinkUrl(@NotNull final Supplier<String> supplier) {
+        this.linkUrlSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String[]>> getShownItems() {
-        return this.getWrappedSupplier().getShownItems();
+        if (this.shownItemsSupplier != null) {
+            return Optional.of(this.shownItemsSupplier);
+        }
+        return this.wrappedSupplier.getShownItems();
+    }
+
+    /**
+     * Set the shown items field value supplier.
+     *
+     * @param supplier The shown items field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setShownItems(@NotNull final Supplier<String[]> supplier) {
+        this.shownItemsSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
-    public Optional<Supplier<AssetData>> getAssetData()  {
-        return this.getWrappedSupplier().getAssetData();
+    public Optional<Supplier<AssetData>> getAssetData() {
+        if (this.assetDataSupplier != null) {
+            return Optional.of(this.assetDataSupplier);
+        }
+        return this.wrappedSupplier.getAssetData();
+    }
+
+    /**
+     * Set the asset data field value supplier.
+     *
+     * @param supplier The asset data field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setAssetData(@NotNull final Supplier<AssetData> supplier) {
+        this.assetDataSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getUrl() {
-        return this.getWrappedSupplier().getUrl();
+        if (this.urlSupplier != null) {
+            return Optional.of(this.urlSupplier);
+        }
+        return this.wrappedSupplier.getUrl();
+    }
+
+    /**
+     * Set the URL field value supplier.
+     *
+     * @param supplier The URL field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setUrl(@NotNull final Supplier<String> supplier) {
+        this.urlSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getFormat() {
-        return this.getWrappedSupplier().getFormat();
+        if (this.formatSupplier != null) {
+            return Optional.of(this.formatSupplier);
+        }
+        return this.wrappedSupplier.getFormat();
+    }
+
+    /**
+     * Set the format field value supplier.
+     *
+     * @param supplier The format field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setFormat(@NotNull final Supplier<String> supplier) {
+        this.formatSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String[]>> getTags() {
-        return this.getWrappedSupplier().getTags();
+        if (this.tagsSupplier != null) {
+            return Optional.of(this.tagsSupplier);
+        }
+        return this.wrappedSupplier.getTags();
+    }
+
+    /**
+     * Set the tags field value supplier.
+     *
+     * @param supplier The tags field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setTags(@NotNull final Supplier<String[]> supplier) {
+        this.tagsSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getTemplatePath() {
-        return this.getWrappedSupplier().getTemplatePath();
+        if (this.templatePathSupplier != null) {
+            return Optional.of(this.templatePathSupplier);
+        }
+        return this.wrappedSupplier.getTemplatePath();
+    }
+
+    /**
+     * Set the template path field value supplier.
+     *
+     * @param supplier The template path field value supplier.
+     * @return This.
+     */
+    public DataLayerSupplier setTemplatePath(@NotNull final Supplier<String> supplier) {
+        this.templatePathSupplier = supplier;
+        return this;
     }
 
     @Override
     @NotNull
     public Optional<Supplier<String>> getLanguage() {
-        return this.getWrappedSupplier().getLanguage();
+        if (this.languageSupplier != null) {
+            return Optional.of(this.languageSupplier);
+        }
+        return this.wrappedSupplier.getLanguage();
     }
 
     /**
-     * Get the wrapped {@link DataLayerSupplier}.
+     * Set the language field value supplier.
      *
-     * @return The wrapped data layer supplier.
+     * @param supplier The language field value supplier.
+     * @return This.
      */
-    @NotNull
-    final DataLayerSupplier getWrappedSupplier() {
-        return this.wrappedSupplier;
+    public DataLayerSupplier setLanguage(@NotNull final Supplier<String> supplier) {
+        this.languageSupplier = supplier;
+        return this;
     }
 }
