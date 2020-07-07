@@ -37,7 +37,7 @@ import java.util.Date;
  *     <li>{@link PageData}</li>
  * </ul>
  */
-final class CachingComponentDataImpl implements ComponentData, ImageData, ContainerData, PageData {
+public final class CachingComponentDataImpl implements ComponentData, ImageData, ContainerData, PageData {
 
     /**
      * The current data.
@@ -192,7 +192,7 @@ final class CachingComponentDataImpl implements ComponentData, ImageData, Contai
      * @param data The component data.
      * @param eager True to eagerly load the data values.
      */
-    CachingComponentDataImpl(@NotNull final ComponentDataImpl data, boolean eager) {
+    public CachingComponentDataImpl(@NotNull final ComponentDataImpl data, boolean eager) {
         this.componentData = data;
         if (eager) {
             this.getId();

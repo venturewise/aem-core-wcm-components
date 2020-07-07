@@ -26,14 +26,14 @@ import java.util.Date;
  *
  * @see AssetData
  */
-final class CachingAssetDataImpl implements AssetData {
+public final class CachingAssetDataImpl implements AssetData {
 
     /**
      * The current data.
      */
     @NotNull
     @JsonIgnore
-    private final AssetDataImpl componentData;
+    private final AssetData componentData;
 
     /**
      * Cached ID field value.
@@ -91,7 +91,7 @@ final class CachingAssetDataImpl implements AssetData {
      * @param data The asset data.
      * @param eager True to eagerly load the data values.
      */
-    CachingAssetDataImpl(@NotNull final AssetDataImpl data, boolean eager) {
+    public CachingAssetDataImpl(@NotNull final AssetDataImpl data, boolean eager) {
         this.componentData = data;
         if (eager) {
             this.getId();

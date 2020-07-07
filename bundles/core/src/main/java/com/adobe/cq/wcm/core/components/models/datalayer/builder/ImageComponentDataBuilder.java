@@ -15,6 +15,10 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.CachingComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +28,16 @@ import java.util.function.Supplier;
 /**
  * Data builder for image components.
  */
-public interface ImageComponentDataBuilder extends GenericComponentDataBuilder<ImageComponentDataBuilder, ImageData> {
+public final class ImageComponentDataBuilder extends GenericComponentDataBuilder<ImageComponentDataBuilder, ImageData> {
+
+    /**
+     * Construct a data layer builder for an image component.
+     *
+     * @param supplier The data layer supplier.
+     */
+    ImageComponentDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
+    }
 
     /**
      * Set the supplier that supplies the component's asset data.
@@ -33,7 +46,28 @@ public interface ImageComponentDataBuilder extends GenericComponentDataBuilder<I
      * @return A new {@link ImageComponentDataBuilder}.
      */
     @NotNull
-    default ImageComponentDataBuilder withAssetData(@NotNull Supplier<AssetData> supplier) {
-        throw new UnsupportedOperationException();
+    public ImageComponentDataBuilder withAssetData(@NotNull final Supplier<AssetData> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setAssetData(supplier));
+    }
+
+    @Override
+    @NotNull
+    ImageComponentDataBuilder createInstance(@NotNull final DataLayerSupplier supplier) {
+        return new ImageComponentDataBuilder(supplier);
+    }
+
+    @NotNull
+    @Override
+    public ImageData build() {
+        return this.build(BuildStrategy.LAZY_CACHING);
+    }
+
+    @NotNull
+    @Override
+    public ImageData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

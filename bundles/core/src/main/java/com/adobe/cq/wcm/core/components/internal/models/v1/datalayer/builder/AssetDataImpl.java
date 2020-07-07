@@ -27,7 +27,7 @@ import java.util.function.Supplier;
  *
  * @see AssetData
  */
-final class AssetDataImpl implements AssetData {
+public final class AssetDataImpl implements AssetData {
 
     /**
      * The current data layer supplier.
@@ -40,7 +40,7 @@ final class AssetDataImpl implements AssetData {
      *
      * @param supplier The data layer supplier.
      */
-    AssetDataImpl(@NotNull final DataLayerSupplier supplier) {
+    public AssetDataImpl(@NotNull final DataLayerSupplier supplier) {
         this.dataLayerSupplier = supplier;
     }
 

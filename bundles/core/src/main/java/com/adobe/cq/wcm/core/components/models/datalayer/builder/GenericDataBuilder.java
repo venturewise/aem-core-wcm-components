@@ -15,7 +15,11 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Supplier;
 
 /**
  * Generic data builder that specifies fields available on all data builders.
@@ -24,7 +28,51 @@ import org.jetbrains.annotations.NotNull;
  * @param <T> The data builder type.
  * @param <K> The data type.
  */
-public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> extends IdRequiredDataBuilder<T, K> {
+public abstract class GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> {
+
+    /**
+     * The current data layer supplier.
+     */
+    private final DataLayerSupplier dataLayerSupplier;
+
+    /**
+     * Construct an Abstract Data Builder.
+     *
+     * @param supplier The data layer supplier.
+     */
+    GenericDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        this.dataLayerSupplier = supplier;
+    }
+
+    /**
+     * Get the current {@link DataLayerSupplier}.
+     *
+     * @return The current data layer supplier.
+     */
+    @NotNull
+    final DataLayerSupplier getDataLayerSupplier() {
+        return this.dataLayerSupplier;
+    }
+
+    /**
+     * Set the supplier that supplies the component's ID.
+     *
+     * @param supplier The ID value supplier.
+     * @return A new builder.
+     */
+    @NotNull
+    public final T withId(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setId(supplier));
+    }
+
+    /**
+     * Create a new instance of the the current wrapper using the specified supplier.
+     *
+     * @param supplier The data layer supplier to wrap.
+     * @return The wrapped data layer supplier.
+     */
+    @NotNull
+    abstract T createInstance(@NotNull final DataLayerSupplier supplier);
 
     /**
      * Build the data.
@@ -32,14 +80,16 @@ public interface GenericDataBuilder<T extends GenericDataBuilder<T, K>, K> exten
      * @return The data object.
      */
     @NotNull
-    default K build() {
-        return this.build(BuildStrategy.LAZY_CACHING);
-    }
+    public abstract K build();
 
+    /**
+     * Build the data.
+     *
+     * @param strategy The build strategy.
+     * @return The data object.
+     */
     @NotNull
-    default K build(@NotNull final BuildStrategy strategy) {
-        throw new UnsupportedOperationException();
-    }
+    public abstract K build(@NotNull final BuildStrategy strategy);
 
     /**
      * Data layer build strategy.

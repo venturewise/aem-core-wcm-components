@@ -15,6 +15,8 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -22,7 +24,21 @@ import org.jetbrains.annotations.NotNull;
  *
  * Used to extend existing component data layer models.
  */
-public interface ComponentDataLayerExtender {
+public final class ComponentDataLayerExtender {
+
+    /**
+     * The component data to be extended.
+     */
+    final ComponentData componentData;
+
+    /**
+     * Construct a component data layer extender.
+     *
+     * @param componentData The existing component data to be extended.
+     */
+    public ComponentDataLayerExtender(@NotNull final ComponentData componentData) {
+        this.componentData = componentData;
+    }
 
     /**
      * Get a ComponentDataBuilder that extends existing component data.
@@ -30,8 +46,8 @@ public interface ComponentDataLayerExtender {
      * @return A new ComponentDataBuilder pre-initialized with the existing component data.
      */
     @NotNull
-    default ComponentDataBuilder asComponent() {
-        throw new UnsupportedOperationException();
+    public ComponentDataBuilder asComponent() {
+        return new ComponentDataBuilder(DataLayerSupplierImpl.extend(this.componentData));
     }
 
     /**
@@ -40,18 +56,17 @@ public interface ComponentDataLayerExtender {
      * @return A new ContainerDataBuilder pre-initialized with the existing container data.
      */
     @NotNull
-    default ContainerDataBuilder asContainer() {
-        throw new UnsupportedOperationException();
+    public ContainerDataBuilder asContainer() {
+        return new ContainerDataBuilder(DataLayerSupplierImpl.extend(this.componentData));
     }
-
     /**
      * Get a PageDataBuilder that extends existing component data.
      *
      * @return A new PageDataBuilder pre-initialized with the existing page data.
      */
     @NotNull
-    default PageDataBuilder asPage() {
-        throw new UnsupportedOperationException();
+    public PageDataBuilder asPage() {
+        return new PageDataBuilder(DataLayerSupplierImpl.extend(this.componentData));
     }
 
     /**
@@ -60,7 +75,6 @@ public interface ComponentDataLayerExtender {
      * @return A new ImageComponentDataBuilder pre-initialized with the existing image component data.
      */
     @NotNull
-    default ImageComponentDataBuilder asImageComponent() {
-        throw new UnsupportedOperationException();
-    }
-}
+    public ImageComponentDataBuilder asImageComponent() {
+        return new ImageComponentDataBuilder(DataLayerSupplierImpl.extend(this.componentData));
+    }}

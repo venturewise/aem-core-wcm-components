@@ -15,6 +15,10 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.AssetDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.CachingAssetDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,20 +29,16 @@ import java.util.function.Supplier;
  * Data builder for a Dam Assets.
  * This builder will produce a valid {@link AssetData} object.
  */
-public interface AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, AssetData> {
+public final class AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, AssetData> {
 
     /**
-     * Set the supplier that supplies the component's ID.
+     * Construct an Asset Data Builder.
      *
-     * @param supplier The ID value supplier.
-     * @return A new {@link AssetDataBuilder}.
-     * @see AssetData#getId()
+     * @param supplier The data layer supplier.
      */
-    @NotNull
-    default AssetDataBuilder withId(@NotNull Supplier<@NotNull String> supplier) {
-        throw new UnsupportedOperationException();
+    AssetDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
     }
-
 
     /**
      * Sets the supplier that supplies the URL.
@@ -48,8 +48,8 @@ public interface AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, A
      * @see AssetData#getUrl()
      */
     @NotNull
-    default AssetDataBuilder withUrl(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public AssetDataBuilder withUrl(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setUrl(supplier));
     }
 
 
@@ -61,8 +61,8 @@ public interface AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, A
      * @see AssetData#getFormat()
      */
     @NotNull
-    default AssetDataBuilder withFormat(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public AssetDataBuilder withFormat(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setFormat(supplier));
     }
 
 
@@ -74,8 +74,8 @@ public interface AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, A
      * @see AssetData#getTags()
      */
     @NotNull
-    default AssetDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
-        throw new UnsupportedOperationException();
+    public AssetDataBuilder withTags(@NotNull final Supplier<String[]> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTags(supplier));
     }
 
     /**
@@ -86,7 +86,28 @@ public interface AssetDataBuilder extends GenericDataBuilder<AssetDataBuilder, A
      * @see AssetData#getLastModifiedDate()
      */
     @NotNull
-    default AssetDataBuilder withLastModifiedDate(@NotNull Supplier<Date> supplier) {
-        throw new UnsupportedOperationException();
+    public AssetDataBuilder withLastModifiedDate(@NotNull final Supplier<Date> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLastModifiedDate(supplier));
+    }
+
+    @Override
+    @NotNull
+    AssetDataBuilder createInstance(@NotNull final DataLayerSupplier supplier) {
+        return new AssetDataBuilder(supplier);
+    }
+
+    @Override
+    @NotNull
+    public AssetData build() {
+        return this.build(BuildStrategy.LAZY_CACHING);
+    }
+
+    @Override
+    @NotNull
+    public AssetData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new AssetDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingAssetDataImpl(new AssetDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

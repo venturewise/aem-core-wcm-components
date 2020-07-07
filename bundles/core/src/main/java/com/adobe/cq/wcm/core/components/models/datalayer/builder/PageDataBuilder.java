@@ -15,6 +15,10 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.CachingComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +28,16 @@ import java.util.function.Supplier;
  * Data layer builder for pages.
  * This builder will produce a valid {@link PageData} object.
  */
-public interface PageDataBuilder extends GenericComponentDataBuilder<PageDataBuilder, PageData> {
+public final class PageDataBuilder extends GenericComponentDataBuilder<PageDataBuilder, PageData> {
+
+    /**
+     * Construct a data layer builder for a page.
+     *
+     * @param supplier The data layer supplier.
+     */
+    PageDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
+    }
 
     /**
      * Set the supplier that supplies the page's tags data.
@@ -34,8 +47,8 @@ public interface PageDataBuilder extends GenericComponentDataBuilder<PageDataBui
      * @see PageData#getTags()
      */
     @NotNull
-    default PageDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
-        throw new UnsupportedOperationException();
+    public PageDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTags(supplier));
     }
 
     /**
@@ -46,8 +59,8 @@ public interface PageDataBuilder extends GenericComponentDataBuilder<PageDataBui
      * @see PageData#getUrl()
      */
     @NotNull
-    default PageDataBuilder withUrl(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public PageDataBuilder withUrl(@NotNull Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setUrl(supplier));
     }
 
     /**
@@ -58,8 +71,8 @@ public interface PageDataBuilder extends GenericComponentDataBuilder<PageDataBui
      * @see PageData#getTemplatePath()
      */
     @NotNull
-    default PageDataBuilder withTemplatePath(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public PageDataBuilder withTemplatePath(@NotNull Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTemplatePath(supplier));
     }
 
     /**
@@ -70,7 +83,28 @@ public interface PageDataBuilder extends GenericComponentDataBuilder<PageDataBui
      * @see PageData#getLanguage()
      */
     @NotNull
-    default PageDataBuilder withLanguage(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public PageDataBuilder withLanguage(@NotNull Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLanguage(supplier));
+    }
+
+    @Override
+    @NotNull
+    PageDataBuilder createInstance(@NotNull final DataLayerSupplier supplier) {
+        return new PageDataBuilder(supplier);
+    }
+
+    @NotNull
+    @Override
+    public PageData build() {
+        return this.build(BuildStrategy.LAZY_CACHING);
+    }
+
+    @NotNull
+    @Override
+    public PageData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
     }
 }

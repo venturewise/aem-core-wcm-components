@@ -15,7 +15,11 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.CachingComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Data builder for components that are not a specific type of component.
@@ -30,6 +34,35 @@ import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
  *     <li>{@link PageDataBuilder}</li>
  * </ul>
  */
-public interface ComponentDataBuilder extends GenericComponentDataBuilder<ComponentDataBuilder, ComponentData> {
+public final class ComponentDataBuilder extends GenericComponentDataBuilder<ComponentDataBuilder, ComponentData> {
 
+    /**
+     * Construct a component data builder.
+     *
+     * @param supplier The data layer supplier.
+     */
+    ComponentDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
+    }
+
+    @Override
+    @NotNull
+    ComponentDataBuilder createInstance(@NotNull final DataLayerSupplier supplier) {
+        return new ComponentDataBuilder(supplier);
+    }
+
+    @NotNull
+    @Override
+    public ComponentData build() {
+        return this.build(BuildStrategy.LAZY_CACHING);
+    }
+
+    @NotNull
+    @Override
+    public ComponentData build(@NotNull final BuildStrategy strategy) {
+        if (strategy == BuildStrategy.LAZY_NON_CACHING) {
+            return new ComponentDataImpl(this.getDataLayerSupplier());
+        }
+        return new CachingComponentDataImpl(new ComponentDataImpl(this.getDataLayerSupplier()), strategy == BuildStrategy.EAGER_CACHING);
+    }
 }

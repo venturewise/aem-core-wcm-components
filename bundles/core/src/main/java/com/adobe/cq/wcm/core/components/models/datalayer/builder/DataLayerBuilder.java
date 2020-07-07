@@ -15,13 +15,6 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.AssetDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ContainerDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataLayerExtenderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.IDRequiredDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ImageComponentDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.PageDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
@@ -64,7 +57,7 @@ public final class DataLayerBuilder {
      * @return An empty ComponentDataBuilder.
      */
     public static IdRequiredDataBuilder<ComponentDataBuilder, ComponentData> forComponent() {
-        return new IDRequiredDataBuilderImpl<>(new ComponentDataBuilderImpl(EMPTY_SUPPLIER));
+        return new IdRequiredDataBuilder<>(new ComponentDataBuilder(EMPTY_SUPPLIER));
     }
 
     /**
@@ -73,7 +66,7 @@ public final class DataLayerBuilder {
      * @return An empty ContainerDataBuilder.
      */
     public static IdRequiredDataBuilder<ContainerDataBuilder, ContainerData> forContainer() {
-        return new IDRequiredDataBuilderImpl<>(new ContainerDataBuilderImpl(EMPTY_SUPPLIER));
+        return new IdRequiredDataBuilder<>(new ContainerDataBuilder(EMPTY_SUPPLIER));
     }
 
     /**
@@ -82,7 +75,7 @@ public final class DataLayerBuilder {
      * @return An empty ImageComponentDataBuilder.
      */
     public static IdRequiredDataBuilder<ImageComponentDataBuilder, ImageData> forImageComponent() {
-        return new IDRequiredDataBuilderImpl<>(new ImageComponentDataBuilderImpl(EMPTY_SUPPLIER));
+        return new IdRequiredDataBuilder<>(new ImageComponentDataBuilder(EMPTY_SUPPLIER));
     }
 
     /**
@@ -91,7 +84,7 @@ public final class DataLayerBuilder {
      * @return An empty PageDataBuilder.
      */
     public static IdRequiredDataBuilder<PageDataBuilder, PageData> forPage() {
-        return new IDRequiredDataBuilderImpl<>(new PageDataBuilderImpl(EMPTY_SUPPLIER));
+        return new IdRequiredDataBuilder<>(new PageDataBuilder(EMPTY_SUPPLIER));
     }
 
     /**
@@ -100,7 +93,7 @@ public final class DataLayerBuilder {
      * @return An empty AssetDataBuilder.
      */
     public static IdRequiredDataBuilder<AssetDataBuilder, AssetData> forAsset() {
-        return new IDRequiredDataBuilderImpl<>(new AssetDataBuilderImpl(EMPTY_SUPPLIER));
+        return new IdRequiredDataBuilder<>(new AssetDataBuilder(EMPTY_SUPPLIER));
     }
 
     /**
@@ -139,7 +132,7 @@ public final class DataLayerBuilder {
      * @return A new AssetDataBuilder pre-initialized with the existing asset data.
      */
     public static AssetDataBuilder extendingAsset(@NotNull final AssetData assetData) {
-        return new AssetDataBuilderImpl(DataLayerSupplierImpl.extend(assetData));
+        return new AssetDataBuilder(DataLayerSupplierImpl.extend(assetData));
     }
 
     /**
@@ -149,6 +142,6 @@ public final class DataLayerBuilder {
      * @return The component data layer extender.
      */
     public static ComponentDataLayerExtender extending(@NotNull final ComponentData componentData) {
-        return new ComponentDataLayerExtenderImpl(componentData);
+        return new ComponentDataLayerExtender(componentData);
     }
 }
