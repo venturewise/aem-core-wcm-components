@@ -16,7 +16,7 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.PageDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -48,25 +48,25 @@ public final class PageDataBuilderImpl
     @Override
     @NotNull
     public PageDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTags(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTags(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withUrl(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setUrl(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setUrl(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withTemplatePath(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTemplatePath(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTemplatePath(supplier));
     }
 
     @Override
     @NotNull
     public PageDataBuilder withLanguage(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setLanguage(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLanguage(supplier));
     }
 
     @Override
