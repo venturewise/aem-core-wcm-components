@@ -177,6 +177,21 @@ public final class DataLayerSupplierImpl implements DataLayerSupplier {
         return supplier;
     }
 
+    /**
+     * Construct a DataLayerSupplier from existing AssetData.
+     *
+     * @param data The existing asset data.
+     * @return A new DataLayerSupplier that uses the field values from the provided asset data.
+     */
+    public static DataLayerSupplier extend(@NotNull final AssetData data) {
+        return new DataLayerSupplierImpl(DataLayerSupplier.EMPTY_SUPPLIER)
+            .setId(data::getId)
+            .setUrl(data::getUrl)
+            .setFormat(data::getFormat)
+            .setTags(data::getTags)
+            .setLastModifiedDate(data::getLastModifiedDate);
+    }
+
     @Override
     @NotNull
     public Supplier<@NotNull String> getId() {
