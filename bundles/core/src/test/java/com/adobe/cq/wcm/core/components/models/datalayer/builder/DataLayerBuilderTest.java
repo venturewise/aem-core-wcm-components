@@ -13,7 +13,7 @@
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
+package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.Utils;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
@@ -21,12 +21,6 @@ import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
 import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.AssetDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.ComponentDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.ContainerDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.DataLayerBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.ImageComponentDataBuilder;
-import com.adobe.cq.wcm.core.components.models.datalayer.builder.PageDataBuilder;
 import com.day.cq.dam.api.Asset;
 import com.day.cq.tagging.TagConstants;
 import org.apache.jackrabbit.JcrConstants;
