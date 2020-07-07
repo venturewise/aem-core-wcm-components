@@ -17,6 +17,7 @@ package com.adobe.cq.wcm.core.components.internal.models.v1;
 
 import java.util.Calendar;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ValueMap;
@@ -29,7 +30,10 @@ public class ResourceListItemImpl extends AbstractListItemImpl implements ListIt
 
     // private static final Logger LOGGER = LoggerFactory.getLogger(ResourceListItemImpl.class);
 
+    // TODO: why does this exist if it's always null?
+    @SuppressFBWarnings("UWF_NULL_FIELD")
     protected String url;
+
     protected String title;
     protected String description;
     protected Calendar lastModified;
