@@ -1,6 +1,6 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataExtenderSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ComponentDataBuilder;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.ContainerDataBuilder;
@@ -32,24 +32,24 @@ public final class ComponentDataLayerExtenderImpl implements ComponentDataLayerE
     @Override
     @NotNull
     public ComponentDataBuilder asComponent() {
-        return new ComponentDataBuilderImpl(new DataExtenderSupplier(this.componentData));
+        return new ComponentDataBuilderImpl(DataLayerSupplierWrapper.extend(this.componentData));
     }
 
     @Override
     @NotNull
     public ContainerDataBuilder asContainer() {
-        return new ContainerDataBuilderImpl(new DataExtenderSupplier(this.componentData));
+        return new ContainerDataBuilderImpl(DataLayerSupplierWrapper.extend(this.componentData));
     }
 
     @Override
     @NotNull
     public PageDataBuilder asPage() {
-        return new PageDataBuilderImpl(new DataExtenderSupplier(this.componentData));
+        return new PageDataBuilderImpl(DataLayerSupplierWrapper.extend(this.componentData));
     }
 
     @Override
     @NotNull
     public ImageComponentDataBuilder asImageComponent() {
-        return new ImageComponentDataBuilderImpl(new DataExtenderSupplier(this.componentData));
+        return new ImageComponentDataBuilderImpl(DataLayerSupplierWrapper.extend(this.componentData));
     }
 }

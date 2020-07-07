@@ -16,6 +16,10 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier;
 
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
+import com.adobe.cq.wcm.core.components.models.datalayer.ImageData;
+import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -133,6 +137,46 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
         this.wrappedSupplier = dataLayerSupplier;
     }
 
+    /**
+     * Construct a DataLayerSupplier from existing ComponentData.
+     *
+     * @param data The existing component data.
+     * @return A new DataLayerSupplier that uses the field values from the provided component data.
+     */
+    public static DataLayerSupplier extend(@NotNull final ComponentData data) {
+        // set component field value suppliers
+        final DataLayerSupplierWrapper supplier = new DataLayerSupplierWrapper(DataLayerSupplier.EMPTY_SUPPLIER)
+            .setId(data::getId)
+            .setType(data::getType)
+            .setLastModifiedDate(data::getLastModifiedDate)
+            .setParentId(data::getParentId)
+            .setTitle(data::getTitle)
+            .setDescription(data::getDescription)
+            .setText(data::getText)
+            .setLinkUrl(data::getLinkUrl);
+
+        // set page field value suppliers
+        if (data instanceof PageData) {
+            PageData pageData = (PageData) data;
+            supplier.setUrl(pageData::getUrl)
+                .setTags(pageData::getTags)
+                .setTemplatePath(pageData::getTemplatePath)
+                .setLanguage(pageData::getLanguage);
+        }
+
+        // set container field value suppliers
+        if (data instanceof ContainerData) {
+            supplier.setShownItems(((ContainerData) data)::getShownItems);
+        }
+
+        // set image component field value suppliers
+        if (data instanceof ImageData) {
+            supplier.setAssetData(((ImageData) data)::getAssetData);
+        }
+
+        return supplier;
+    }
+
     @Override
     @NotNull
     public Supplier<@NotNull String> getId() {
@@ -145,7 +189,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The ID field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setId(@NotNull final Supplier<@NotNull String> supplier) {
+    public DataLayerSupplierWrapper setId(@NotNull final Supplier<@NotNull String> supplier) {
         this.idSupplier = supplier;
         return this;
     }
@@ -165,7 +209,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The type field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setType(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setType(@NotNull final Supplier<String> supplier) {
         this.typeSupplier = supplier;
         return this;
     }
@@ -185,7 +229,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The last modified date field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setLastModifiedDate(@NotNull final Supplier<Date> supplier) {
+    public DataLayerSupplierWrapper setLastModifiedDate(@NotNull final Supplier<Date> supplier) {
         this.lastModifiedDateSupplier = supplier;
         return this;
     }
@@ -205,7 +249,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The parent ID field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setParentId(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setParentId(@NotNull final Supplier<String> supplier) {
         this.parentIdSupplier = supplier;
         return this;
     }
@@ -225,7 +269,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The title field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setTitle(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setTitle(@NotNull final Supplier<String> supplier) {
         this.titleSupplier = supplier;
         return this;
     }
@@ -245,7 +289,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The description field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setDescription(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setDescription(@NotNull final Supplier<String> supplier) {
         this.descriptionSupplier = supplier;
         return this;
     }
@@ -265,7 +309,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The text field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setText(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setText(@NotNull final Supplier<String> supplier) {
         this.textSupplier = supplier;
         return this;
     }
@@ -285,7 +329,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The link URL field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setLinkUrl(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setLinkUrl(@NotNull final Supplier<String> supplier) {
         this.linkUrlSupplier = supplier;
         return this;
     }
@@ -305,7 +349,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The shown items field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setShownItems(@NotNull final Supplier<String[]> supplier) {
+    public DataLayerSupplierWrapper setShownItems(@NotNull final Supplier<String[]> supplier) {
         this.shownItemsSupplier = supplier;
         return this;
     }
@@ -325,7 +369,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The asset data field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setAssetData(@NotNull final Supplier<AssetData> supplier) {
+    public DataLayerSupplierWrapper setAssetData(@NotNull final Supplier<AssetData> supplier) {
         this.assetDataSupplier = supplier;
         return this;
     }
@@ -345,7 +389,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The URL field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setUrl(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setUrl(@NotNull final Supplier<String> supplier) {
         this.urlSupplier = supplier;
         return this;
     }
@@ -365,7 +409,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The format field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setFormat(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setFormat(@NotNull final Supplier<String> supplier) {
         this.formatSupplier = supplier;
         return this;
     }
@@ -385,7 +429,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The tags field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setTags(@NotNull final Supplier<String[]> supplier) {
+    public DataLayerSupplierWrapper setTags(@NotNull final Supplier<String[]> supplier) {
         this.tagsSupplier = supplier;
         return this;
     }
@@ -405,7 +449,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The template path field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setTemplatePath(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setTemplatePath(@NotNull final Supplier<String> supplier) {
         this.templatePathSupplier = supplier;
         return this;
     }
@@ -425,7 +469,7 @@ public final class DataLayerSupplierWrapper implements DataLayerSupplier {
      * @param supplier The language field value supplier.
      * @return This.
      */
-    public DataLayerSupplier setLanguage(@NotNull final Supplier<String> supplier) {
+    public DataLayerSupplierWrapper setLanguage(@NotNull final Supplier<String> supplier) {
         this.languageSupplier = supplier;
         return this;
     }
