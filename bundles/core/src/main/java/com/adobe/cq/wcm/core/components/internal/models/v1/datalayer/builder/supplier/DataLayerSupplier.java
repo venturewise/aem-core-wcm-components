@@ -29,6 +29,11 @@ import java.util.function.Supplier;
 public interface DataLayerSupplier {
 
     /**
+     * An empty DataLayerSupplier which has null values for all field value suppliers.
+     */
+    DataLayerSupplier EMPTY_SUPPLIER = new DataLayerSupplier() {};
+
+    /**
      * Get the ID field value supplier.
      *
      * @return The ID field value supplier, or empty if not set.
