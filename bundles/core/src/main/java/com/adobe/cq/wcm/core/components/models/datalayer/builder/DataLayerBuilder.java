@@ -24,7 +24,6 @@ import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.Ima
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.PageDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataExtenderSupplier;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
@@ -33,6 +32,8 @@ import com.adobe.cq.wcm.core.components.models.datalayer.PageData;
 import com.day.cq.dam.api.Asset;
 import org.jetbrains.annotations.NotNull;
 
+import static com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier.EMPTY_SUPPLIER;
+
 /**
  * Data layer builder utility.
  *
@@ -40,11 +41,6 @@ import org.jetbrains.annotations.NotNull;
  * <a href="https://github.com/adobe/adobe-client-data-layer">Adobe Client Data Layer</a>.
  */
 public final class DataLayerBuilder {
-
-    /**
-     * An empty DataLayerSupplier which has null values for all field value suppliers.
-     */
-    private static final DataLayerSupplier EMPTY_SUPPLIER = new DataLayerSupplier() {};
 
     /**
      * Private constructor to prevent instantiation of utility class.
