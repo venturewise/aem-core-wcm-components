@@ -131,7 +131,7 @@ public final class DataLayerBuilder {
      * @param assetData The asset data to extend.
      * @return A new AssetDataBuilder pre-initialized with the existing asset data.
      */
-    public static AssetDataBuilder extendingAsset(@NotNull final AssetData assetData) {
+    public static AssetDataBuilder extending(@NotNull final AssetData assetData) {
         return new AssetDataBuilder(DataLayerSupplierImpl.extend(assetData));
     }
 
