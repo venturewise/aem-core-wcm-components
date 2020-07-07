@@ -22,8 +22,8 @@ import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.Com
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.IDRequiredDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ImageComponentDataBuilderImpl;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.PageDataBuilderImpl;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataExtenderSupplier;
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.AssetDataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
@@ -112,7 +112,7 @@ public final class DataLayerBuilder {
      * @return A new AssetDataBuilder pre-initialized with the existing asset data.
      */
     public static AssetDataBuilder extendingAsset(@NotNull final AssetData assetData) {
-        return new AssetDataBuilderImpl(new AssetDataExtenderSupplier(assetData));
+        return new AssetDataBuilderImpl(DataLayerSupplierImpl.extend(assetData));
     }
 
     /**
