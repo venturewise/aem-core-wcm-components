@@ -15,6 +15,8 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.AssetDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.CachingAssetDataImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
