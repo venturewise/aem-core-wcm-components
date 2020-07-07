@@ -170,7 +170,8 @@ class CachingComponentDataImplTest {
         void getLastModifiedDate() {
             Mockito.verify(this.componentData, Mockito.never()).getLastModifiedDate();
             Assertions.assertEquals(new Date(0L), this.cachingComponentData.getLastModifiedDate());
-            Assertions.assertSame(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
+            Assertions.assertNotSame(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
+            Assertions.assertEquals(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
             Mockito.verify(this.componentData, Mockito.atMost(1)).getLastModifiedDate();
         }
 
@@ -218,7 +219,8 @@ class CachingComponentDataImplTest {
         void getShownItems() {
             Mockito.verify(this.componentData, Mockito.never()).getTitle();
             Assertions.assertArrayEquals(new String[]{"shownItems"}, this.cachingComponentData.getShownItems());
-            Assertions.assertSame(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
+            Assertions.assertNotSame(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
+            Assertions.assertArrayEquals(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
             Mockito.verify(this.componentData, Mockito.atMost(1)).getShownItems();
         }
 
@@ -250,7 +252,8 @@ class CachingComponentDataImplTest {
         void getTags() {
             Mockito.verify(this.componentData, Mockito.never()).getTags();
             Assertions.assertArrayEquals(new String[]{"tags"}, this.cachingComponentData.getTags());
-            Assertions.assertSame(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
+            Assertions.assertNotSame(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
+            Assertions.assertArrayEquals(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
             Mockito.verify(this.componentData, Mockito.atMost(1)).getTags();
         }
 
@@ -304,7 +307,8 @@ class CachingComponentDataImplTest {
         void getLastModifiedDate() {
             Mockito.verify(this.componentData, Mockito.times(1)).getLastModifiedDate();
             Assertions.assertEquals(new Date(0L), this.cachingComponentData.getLastModifiedDate());
-            Assertions.assertSame(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
+            Assertions.assertNotSame(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
+            Assertions.assertEquals(this.cachingComponentData.getLastModifiedDate(), this.cachingComponentData.getLastModifiedDate());
             Mockito.verify(this.componentData, Mockito.times(1)).getLastModifiedDate();
         }
 
@@ -352,7 +356,8 @@ class CachingComponentDataImplTest {
         void getShownItems() {
             Mockito.verify(this.componentData, Mockito.times(1)).getShownItems();
             Assertions.assertArrayEquals(new String[]{"shownItems"}, this.cachingComponentData.getShownItems());
-            Assertions.assertSame(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
+            Assertions.assertNotSame(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
+            Assertions.assertArrayEquals(this.cachingComponentData.getShownItems(), this.cachingComponentData.getShownItems());
             Mockito.verify(this.componentData, Mockito.times(1)).getShownItems();
         }
 
@@ -384,7 +389,8 @@ class CachingComponentDataImplTest {
         void getTags() {
             Mockito.verify(this.componentData, Mockito.times(1)).getTags();
             Assertions.assertArrayEquals(new String[]{"tags"}, this.cachingComponentData.getTags());
-            Assertions.assertSame(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
+            Assertions.assertNotSame(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
+            Assertions.assertArrayEquals(this.cachingComponentData.getTags(), this.cachingComponentData.getTags());
             Mockito.verify(this.componentData, Mockito.times(1)).getTags();
         }
 

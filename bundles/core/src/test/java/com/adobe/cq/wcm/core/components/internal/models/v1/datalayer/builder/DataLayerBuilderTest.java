@@ -501,7 +501,7 @@ public final class DataLayerBuilderTest {
             Assertions.assertEquals(TEST_PARENT_ID, pageData.getParentId());
             Assertions.assertEquals(TEST_TITLE, pageData.getTitle());
             Assertions.assertEquals(TEST_TYPE, pageData.getType());
-            Assertions.assertEquals(TEST_TAGS, pageData.getTags());
+            Assertions.assertArrayEquals(TEST_TAGS, pageData.getTags());
             Assertions.assertEquals(TEST_LANGUAGE, pageData.getLanguage());
             Assertions.assertEquals(TEST_URL, pageData.getUrl());
             Assertions.assertEquals(TEST_TEMPLATE_PATH, pageData.getTemplatePath());

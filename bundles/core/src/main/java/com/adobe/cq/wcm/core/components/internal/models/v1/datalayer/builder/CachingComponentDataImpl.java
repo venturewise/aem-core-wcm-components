@@ -24,7 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * A caching component data wrapper.
@@ -239,7 +241,10 @@ public final class CachingComponentDataImpl implements ComponentData, ImageData,
             this.lastModifiedDate = this.componentData.getLastModifiedDate();
             this.lastModifiedDateInitialized = true;
         }
-        return this.lastModifiedDate;
+        return Optional.ofNullable(this.lastModifiedDate)
+            .map(Date::getTime)
+            .map(Date::new)
+            .orElse(null);
     }
 
     @Override
@@ -299,7 +304,9 @@ public final class CachingComponentDataImpl implements ComponentData, ImageData,
             this.shownItems = this.componentData.getShownItems();
             this.shownItemsInitialized = true;
         }
-        return this.shownItems;
+        return Optional.ofNullable(this.shownItems)
+            .map(items -> Arrays.copyOf(items, items.length))
+            .orElse(null);
     }
 
     @Override
@@ -339,7 +346,9 @@ public final class CachingComponentDataImpl implements ComponentData, ImageData,
             this.tags = this.componentData.getTags();
             this.tagsInitialized = true;
         }
-        return this.tags;
+        return Optional.ofNullable(this.tags)
+            .map(items -> Arrays.copyOf(items, items.length))
+            .orElse(null);
     }
 
     @Override

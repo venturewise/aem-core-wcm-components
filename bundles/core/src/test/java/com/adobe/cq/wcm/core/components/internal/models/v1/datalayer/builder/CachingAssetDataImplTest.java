@@ -57,7 +57,8 @@ class CachingAssetDataImplTest {
         void getLastModifiedDate() {
             Mockito.verify(this.assetData, Mockito.never()).getLastModifiedDate();
             Assertions.assertEquals(new Date(0L), this.cachingAssetData.getLastModifiedDate());
-            Assertions.assertSame(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
+            Assertions.assertNotSame(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
+            Assertions.assertEquals(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
             Mockito.verify(this.assetData, Mockito.atMost(1)).getLastModifiedDate();
         }
 
@@ -81,7 +82,8 @@ class CachingAssetDataImplTest {
         void getTags() {
             Mockito.verify(this.assetData, Mockito.never()).getTags();
             Assertions.assertArrayEquals(new String[]{"tags"}, this.cachingAssetData.getTags());
-            Assertions.assertSame(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
+            Assertions.assertNotSame(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
+            Assertions.assertArrayEquals(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
             Mockito.verify(this.assetData, Mockito.atMost(1)).getTags();
         }
     }
@@ -114,7 +116,8 @@ class CachingAssetDataImplTest {
         void getLastModifiedDate() {
             Mockito.verify(this.assetData, Mockito.times(1)).getTags();
             Assertions.assertEquals(new Date(0L), this.cachingAssetData.getLastModifiedDate());
-            Assertions.assertSame(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
+            Assertions.assertNotSame(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
+            Assertions.assertEquals(this.cachingAssetData.getLastModifiedDate(), this.cachingAssetData.getLastModifiedDate());
             Mockito.verify(this.assetData, Mockito.times(1)).getLastModifiedDate();
         }
 
@@ -138,7 +141,8 @@ class CachingAssetDataImplTest {
         void getTags() {
             Mockito.verify(this.assetData, Mockito.times(1)).getTags();
             Assertions.assertArrayEquals(new String[]{"tags"}, this.cachingAssetData.getTags());
-            Assertions.assertSame(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
+            Assertions.assertNotSame(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
+            Assertions.assertArrayEquals(this.cachingAssetData.getTags(), this.cachingAssetData.getTags());
             Mockito.verify(this.assetData, Mockito.times(1)).getTags();
         }
     }

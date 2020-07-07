@@ -19,7 +19,9 @@ import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Caching asset data wrapper.
@@ -118,7 +120,10 @@ public final class CachingAssetDataImpl implements AssetData {
             this.lastModifiedDate = this.componentData.getLastModifiedDate();
             this.lastModifiedDateInitialized = true;
         }
-        return this.lastModifiedDate;
+        return Optional.ofNullable(this.lastModifiedDate)
+            .map(Date::getTime)
+            .map(Date::new)
+            .orElse(null);
     }
 
     @Override
@@ -145,6 +150,8 @@ public final class CachingAssetDataImpl implements AssetData {
             this.tags = this.componentData.getTags();
             this.tagsInitialized = true;
         }
-        return this.tags;
+        return Optional.ofNullable(this.tags)
+            .map(items -> Arrays.copyOf(items, items.length))
+            .orElse(null);
     }
 }
