@@ -27,7 +27,22 @@ import java.util.function.Supplier;
  * @param <T> The data builder type.
  * @param <K> The data type.
  */
-public interface IdRequiredDataBuilder<T extends GenericDataBuilder<T, K>, K> {
+public final class IdRequiredDataBuilder<T extends GenericDataBuilder<T, K>, K> {
+
+    /**
+     * The data builder.
+     */
+    @NotNull
+    private final T builder;
+
+    /**
+     * Create an ID requiring data builder.
+     *
+     * @param builder The data builder.
+     */
+    IdRequiredDataBuilder(@NotNull final T builder) {
+        this.builder = builder;
+    }
 
     /**
      * Set the supplier that supplies the component's ID.
@@ -38,7 +53,7 @@ public interface IdRequiredDataBuilder<T extends GenericDataBuilder<T, K>, K> {
      * @see com.adobe.cq.wcm.core.components.models.datalayer.AssetData#getId()
      */
     @NotNull
-    default T withId(@NotNull Supplier<@NotNull String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withId(@NotNull final Supplier<@NotNull String> supplier) {
+        return this.builder.withId(supplier);
     }
 }

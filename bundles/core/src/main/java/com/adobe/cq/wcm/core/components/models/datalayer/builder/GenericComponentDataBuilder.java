@@ -15,6 +15,8 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.ComponentData;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,8 +29,17 @@ import java.util.function.Supplier;
  * @param <T> The data builder type.
  * @param <K> The data type.
  */
-public interface GenericComponentDataBuilder<T extends GenericComponentDataBuilder<T, K>, K extends ComponentData>
+abstract class GenericComponentDataBuilder<T extends GenericComponentDataBuilder<T, K>, K extends ComponentData>
     extends GenericDataBuilder<T, K> {
+
+    /**
+     * Construct an Abstract Data Builder.
+     *
+     * @param supplier The data layer supplier.
+     */
+    GenericComponentDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
+    }
 
     /**
      *  Set the supplier that supplies the component's type.
@@ -38,8 +49,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getType()
      */
     @NotNull
-    default T withType(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withType(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setType(supplier));
     }
 
     /**
@@ -50,8 +61,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getLastModifiedDate()
      */
     @NotNull
-    default T withLastModifiedDate(@NotNull Supplier<Date> supplier) {
-        throw new UnsupportedOperationException();
+    public T withLastModifiedDate(@NotNull final Supplier<Date> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLastModifiedDate(supplier));
     }
 
     /**
@@ -62,8 +73,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getParentId()
      */
     @NotNull
-    default T withParentId(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withParentId(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setParentId(supplier));
     }
 
     /**
@@ -74,8 +85,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getTitle()
      */
     @NotNull
-    default T withTitle(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withTitle(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTitle(supplier));
     }
 
     /**
@@ -86,8 +97,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getDescription()
      */
     @NotNull
-    default T withDescription(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withDescription(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setDescription(supplier));
     }
 
     /**
@@ -98,8 +109,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getText()
      */
     @NotNull
-    default T withText(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withText(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setText(supplier));
     }
 
     /**
@@ -110,8 +121,8 @@ public interface GenericComponentDataBuilder<T extends GenericComponentDataBuild
      * @see ComponentData#getLinkUrl()
      */
     @NotNull
-    default T withLinkUrl(@NotNull Supplier<String> supplier) {
-        throw new UnsupportedOperationException();
+    public T withLinkUrl(@NotNull final Supplier<String> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLinkUrl(supplier));
     }
 
 }

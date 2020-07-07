@@ -42,7 +42,7 @@ import java.util.function.Supplier;
  *     <li>{@link PageData}</li>
  * </ul>
  */
-final class ComponentDataImpl implements ComponentData, ImageData, ContainerData, PageData {
+public final class ComponentDataImpl implements ComponentData, ImageData, ContainerData, PageData {
 
     /**
      * Logger.
@@ -60,7 +60,7 @@ final class ComponentDataImpl implements ComponentData, ImageData, ContainerData
      *
      * @param supplier The data layer supplier.
      */
-    ComponentDataImpl(@NotNull final DataLayerSupplier supplier) {
+    public ComponentDataImpl(@NotNull final DataLayerSupplier supplier) {
         this.dataLayerSupplier = supplier;
     }
 

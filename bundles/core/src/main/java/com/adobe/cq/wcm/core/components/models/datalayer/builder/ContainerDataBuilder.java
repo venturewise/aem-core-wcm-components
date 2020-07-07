@@ -15,6 +15,9 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 package com.adobe.cq.wcm.core.components.models.datalayer.builder;
 
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.ComponentDataImpl;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.ContainerData;
 import org.jetbrains.annotations.NotNull;
 
@@ -24,7 +27,16 @@ import java.util.function.Supplier;
  * Data builder for container components.
  * This builder will produce a valid {@link ContainerData} object.
  */
-public interface ContainerDataBuilder extends GenericComponentDataBuilder<ContainerDataBuilder, ContainerData> {
+public final class ContainerDataBuilder extends GenericComponentDataBuilder<ContainerDataBuilder, ContainerData> {
+
+    /**
+     * Construct a data builder for a container component.
+     *
+     * @param supplier The data layer supplier.
+     */
+    ContainerDataBuilder(@NotNull final DataLayerSupplier supplier) {
+        super(supplier);
+    }
 
     /**
      * Set the supplier that supplies the array of shown items.
@@ -34,5 +46,19 @@ public interface ContainerDataBuilder extends GenericComponentDataBuilder<Contai
      * @see ContainerData#getShownItems()
      */
     @NotNull
-    ContainerDataBuilder withShownItems(@NotNull Supplier<String[]> supplier);
+    public ContainerDataBuilder withShownItems(@NotNull final Supplier<String[]> supplier) {
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setShownItems(supplier));
+    }
+
+    @Override
+    @NotNull
+    ContainerDataBuilder createInstance(@NotNull final DataLayerSupplier supplier) {
+        return new ContainerDataBuilder(supplier);
+    }
+
+    @NotNull
+    @Override
+    public ContainerData build() {
+        return new ComponentDataImpl(this.getDataLayerSupplier());
+    }
 }
