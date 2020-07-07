@@ -16,7 +16,7 @@
 package com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder;
 
 import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplier;
-import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierWrapper;
+import com.adobe.cq.wcm.core.components.internal.models.v1.datalayer.builder.supplier.DataLayerSupplierImpl;
 import com.adobe.cq.wcm.core.components.models.datalayer.AssetData;
 import com.adobe.cq.wcm.core.components.models.datalayer.builder.AssetDataBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -47,31 +47,31 @@ public final class AssetDataBuilderImpl extends AbstractDataBuilder<AssetDataBui
     @Override
     @NotNull
     public AssetDataBuilder withId(@NotNull final Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setId(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setId(supplier));
     }
 
     @Override
     @NotNull
     public AssetDataBuilder withUrl(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setUrl(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setUrl(supplier));
     }
 
     @Override
     @NotNull
     public AssetDataBuilder withFormat(@NotNull Supplier<String> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setFormat(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setFormat(supplier));
     }
 
     @Override
     @NotNull
     public AssetDataBuilder withTags(@NotNull Supplier<String[]> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setTags(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setTags(supplier));
     }
 
     @Override
     @NotNull
     public AssetDataBuilder withLastModifiedDate(@NotNull final Supplier<Date> supplier) {
-        return this.createInstance(new DataLayerSupplierWrapper(this.getDataLayerSupplier()).setLastModifiedDate(supplier));
+        return this.createInstance(new DataLayerSupplierImpl(this.getDataLayerSupplier()).setLastModifiedDate(supplier));
     }
 
     @NotNull
