@@ -621,7 +621,7 @@ public final class DataLayerBuilderTest {
             AssetData originalData = initialBuilder.build();
 
             // wrap the component data without changing any values
-            AssetData extendedDataNoOverlay = DataLayerBuilder.extendingAsset(
+            AssetData extendedDataNoOverlay = DataLayerBuilder.extending(
                 initialBuilder.build()
             ).build();
 
@@ -633,7 +633,7 @@ public final class DataLayerBuilderTest {
             Assertions.assertArrayEquals(BAD_TAGS, extendedDataNoOverlay.getTags());
 
             // wrap the component data and change every value
-            AssetData assetData = DataLayerBuilder.extendingAsset(originalData)
+            AssetData assetData = DataLayerBuilder.extending(originalData)
                 .withId(() -> TEST_ID)
                 .withFormat(() -> TEST_FORMAT)
                 .withLastModifiedDate(() -> LAST_MODIFIED_DATE)
